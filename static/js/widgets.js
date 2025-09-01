@@ -41,11 +41,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeWidgets() {
-    // Initialize on-ramp widget
-    updateOnRampCalculation();
+    // Check if interactive widgets exist before initializing
+    const onrampAmount = document.getElementById('onramp-amount');
+    const offrampAmount = document.getElementById('offramp-amount');
     
-    // Initialize off-ramp widget
-    updateOffRampCalculation();
+    if (onrampAmount) {
+        updateOnRampCalculation();
+    }
+    
+    if (offrampAmount) {
+        updateOffRampCalculation();
+    }
     
     console.log('Widgets initialized successfully');
 }
