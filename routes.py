@@ -36,9 +36,11 @@ def contact():
     
     else:
         # Form validation failed
-        for field, errors in form.errors.items():
-            for error in errors:
-                flash(f'{getattr(form, field).label.text}: {error}', 'error')
+        for field_name, errors in form.errors.items():
+            field = getattr(form, field_name, None)
+            if field and hasattr(field, 'label'):
+                for error in errors:
+                    flash(f'{field.label.text}: {error}', 'error')
     
     return redirect(url_for('index') + '#contact')
 
