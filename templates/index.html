@@ -1,0 +1,276 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-100 py-5">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <span class="badge bg-warning text-dark mb-3 fs-6">Coming Soon</span>
+                    <h1 class="display-4 fw-bold mb-4">
+                        Unlock Africa's <span class="gradient-text">Financial Ecosystem</span>
+                    </h1>
+                    <p class="lead mb-4">
+                        With GradientXchange, businesses can plug into Africa's financial ecosystem through one simple API — giving users instant access to crypto using familiar methods like bank transfers, mobile money, and cards.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#widgets" class="btn btn-primary btn-lg me-3">Explore Widgets</a>
+                        <a href="#contact" class="btn btn-outline-primary btn-lg">Get in Touch</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-image">
+                    <img src="https://pixabay.com/get/g79aa60db30537852aca75097938b773ea608fdf2f60d3acfbee7a0598d0a56e8ec3d24a29b245e5e589b398a17103f6401665542842c4cef1e2c226c55bd83fb_1280.jpg" 
+                         alt="African Map" class="img-fluid rounded-3 shadow">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Crypto Logos Section -->
+<section class="crypto-section py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="fw-bold mb-3">Supported Cryptocurrencies</h2>
+                <p class="text-muted">Trade with confidence across major digital assets</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="crypto-logos d-flex justify-content-around align-items-center flex-wrap">
+                    <div class="crypto-item">
+                        <img src="https://pixabay.com/get/g1a22d2c8bdf7aca7c70e866a96c6cf72ee25c249784775626ce4534af0358f9e0bad686a5300e5ddf4a8f6e2e42c6ec3c6de97bd81cb2fb6153a35d911a1ff0f_1280.jpg" 
+                             alt="Bitcoin" class="crypto-logo">
+                        <span class="crypto-name">Bitcoin</span>
+                    </div>
+                    <div class="crypto-item">
+                        <img src="https://pixabay.com/get/gff8e9265a7e0d3b9faafcd66fd6456079f0f2459463b9c6781598c89278224c18c443a29d91b80b35b04e51a503dd5294bcbb55f4048187dff55ae00698bfcc7_1280.jpg" 
+                             alt="Ethereum" class="crypto-logo">
+                        <span class="crypto-name">Ethereum</span>
+                    </div>
+                    <div class="crypto-item">
+                        <div class="crypto-placeholder">USDC</div>
+                        <span class="crypto-name">USDC</span>
+                    </div>
+                    <div class="crypto-item">
+                        <div class="crypto-placeholder">SOL</div>
+                        <span class="crypto-name">Solana</span>
+                    </div>
+                    <div class="crypto-item">
+                        <div class="crypto-placeholder">USDT</div>
+                        <span class="crypto-name">Tether</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Widgets Section -->
+<section id="widgets" class="widgets-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="fw-bold mb-3">Interactive Trading Widgets</h2>
+                <p class="text-muted">Experience seamless crypto trading with our intuitive widgets</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <!-- On-ramp Widget -->
+            <div class="col-lg-6 mb-4">
+                <div class="widget-card card shadow-sm h-100">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="fas fa-arrow-up me-2"></i>Buy Crypto (On-ramp)</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="widget-content">
+                            <div class="currency-display mb-3">
+                                <span class="currency-label">From:</span>
+                                <span class="currency-value">South African Rand (ZAR)</span>
+                            </div>
+                            
+                            <div class="amount-input mb-3">
+                                <label class="form-label">Amount (ZAR)</label>
+                                <input type="number" class="form-control" id="onramp-amount" placeholder="1000" value="1000">
+                            </div>
+                            
+                            <div class="crypto-select mb-3">
+                                <label class="form-label">Buy Cryptocurrency</label>
+                                <select class="form-select" id="onramp-crypto">
+                                    <option value="btc">Bitcoin (BTC)</option>
+                                    <option value="eth">Ethereum (ETH)</option>
+                                    <option value="usdc" selected>USDC</option>
+                                    <option value="usdt">Tether (USDT)</option>
+                                    <option value="sol">Solana (SOL)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="conversion-display mb-3">
+                                <div class="conversion-rate">
+                                    <span id="onramp-result">≈ 55.12 USDC</span>
+                                </div>
+                                <small class="text-muted">Rate: 1 USDC = 18.15 ZAR</small>
+                            </div>
+                            
+                            <button class="btn btn-success w-100" onclick="simulateTransaction('onramp')">
+                                Buy Crypto
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Off-ramp Widget -->
+            <div class="col-lg-6 mb-4">
+                <div class="widget-card card shadow-sm h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-arrow-down me-2"></i>Sell Crypto (Off-ramp)</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="widget-content">
+                            <div class="currency-display mb-3">
+                                <span class="currency-label">To:</span>
+                                <span class="currency-value">Kenyan Shillings (KES)</span>
+                            </div>
+                            
+                            <div class="crypto-select mb-3">
+                                <label class="form-label">Sell Cryptocurrency</label>
+                                <select class="form-select" id="offramp-crypto">
+                                    <option value="btc">Bitcoin (BTC)</option>
+                                    <option value="eth">Ethereum (ETH)</option>
+                                    <option value="usdc" selected>USDC</option>
+                                    <option value="usdt">Tether (USDT)</option>
+                                    <option value="sol">Solana (SOL)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="amount-input mb-3">
+                                <label class="form-label">Amount (USDC)</label>
+                                <input type="number" class="form-control" id="offramp-amount" placeholder="100" value="100">
+                            </div>
+                            
+                            <div class="conversion-display mb-3">
+                                <div class="conversion-rate">
+                                    <span id="offramp-result">≈ 12,850 KES</span>
+                                </div>
+                                <small class="text-muted">Rate: 1 USDC = 128.50 KES</small>
+                            </div>
+                            
+                            <button class="btn btn-primary w-100" onclick="simulateTransaction('offramp')">
+                                Sell Crypto
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="about-section py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4">
+                <img src="https://pixabay.com/get/g2a723f64a66d5467af1d9d874a8f36799dd1fc5705177c8532aa9241ccf9d878a3d8a4c7c80c6b00e38f96351683f95f641aaf3eac94b7f56d76fd8cb8acf114_1280.jpg" 
+                     alt="Modern Business Finance" class="img-fluid rounded-3 shadow">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-4">Empowering African Financial Innovation</h2>
+                <p class="mb-4">
+                    GradientXchange bridges the gap between traditional African financial systems and the global cryptocurrency ecosystem. Our comprehensive API platform enables businesses to offer seamless crypto services to their customers.
+                </p>
+                <div class="features-list">
+                    <div class="feature-item mb-3">
+                        <i class="fas fa-check-circle text-success me-3"></i>
+                        <span>Single API integration for multiple payment methods</span>
+                    </div>
+                    <div class="feature-item mb-3">
+                        <i class="fas fa-check-circle text-success me-3"></i>
+                        <span>Support for bank transfers, mobile money, and cards</span>
+                    </div>
+                    <div class="feature-item mb-3">
+                        <i class="fas fa-check-circle text-success me-3"></i>
+                        <span>Comprehensive B2B and B2C solutions</span>
+                    </div>
+                    <div class="feature-item mb-3">
+                        <i class="fas fa-check-circle text-success me-3"></i>
+                        <span>African market expertise and local partnerships</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2 class="fw-bold mb-3">Get in Touch</h2>
+                <p class="text-muted">Ready to integrate with GradientXchange? We'd love to hear from you.</p>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="contact-info mb-5">
+                    <div class="row text-center">
+                        <div class="col-md-6 mb-3">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope fa-2x text-primary mb-3"></i>
+                                <h5>Email Us</h5>
+                                <p class="text-muted">hello@gradientxchange.com</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="contact-item">
+                                <i class="fas fa-globe fa-2x text-primary mb-3"></i>
+                                <h5>Global Reach</h5>
+                                <p class="text-muted">Serving African markets worldwide</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form method="POST" action="{{ url_for('contact') }}" class="contact-form">
+                        {{ form.hidden_tag() }}
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.name.label(class="form-label") }}
+                                {{ form.name(class="form-control") }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.email.label(class="form-label") }}
+                                {{ form.email(class="form-control") }}
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            {{ form.company.label(class="form-label") }}
+                            {{ form.company(class="form-control", placeholder="Optional") }}
+                        </div>
+                        
+                        <div class="mb-3">
+                            {{ form.message.label(class="form-label") }}
+                            {{ form.message(class="form-control", rows="5") }}
+                        </div>
+                        
+                        <div class="text-center">
+                            {{ form.submit(class="btn btn-primary btn-lg px-5") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
