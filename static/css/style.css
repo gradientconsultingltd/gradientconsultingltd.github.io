@@ -139,28 +139,26 @@ body {
 }
 
 /* Widgets Section */
-.widget-card {
-    border: none;
+.widget-preview {
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.widget-preview:hover {
+    transform: translateY(-5px);
+}
+
+.widget-preview img {
+    max-width: 100%;
+    height: auto;
     border-radius: 15px;
     transition: all 0.3s ease;
+    border: 1px solid #e5e7eb;
 }
 
-.widget-image {
-    text-align: center;
-}
-
-.widget-image img {
-    max-height: 120px;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.widget-image img:hover {
+.widget-preview img:hover {
     transform: scale(1.02);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .widget-card:hover {
