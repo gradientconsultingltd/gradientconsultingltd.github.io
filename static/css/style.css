@@ -39,6 +39,16 @@ body {
     font-size: 1.8rem !important;
 }
 
+.logo-img {
+    height: 40px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
+
 .nav-link {
     font-weight: 500;
     transition: color 0.3s ease;
