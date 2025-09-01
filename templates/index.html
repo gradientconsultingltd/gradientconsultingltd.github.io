@@ -75,105 +75,31 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center mb-5">
-                <h2 class="fw-bold mb-3">Interactive Trading Widgets</h2>
-                <p class="text-muted">Experience seamless crypto trading with our intuitive widgets</p>
+                <h2 class="fw-bold mb-3">Trading Widgets Preview</h2>
+                <p class="text-muted">See how our crypto trading widgets will look and function</p>
             </div>
         </div>
         
         <div class="row">
             <!-- On-ramp Widget -->
             <div class="col-lg-6 mb-4">
-                <div class="widget-card card shadow-sm h-100">
-                    <div class="card-header bg-success text-white">
-                        <h5 class="mb-0"><i class="fas fa-arrow-up me-2"></i>Buy Crypto (On-ramp)</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="widget-image mb-3">
-                            <img src="{{ url_for('static', filename='images/Crypto_onramp_conversion_illustration_86af9b5f.png') }}" 
-                                 alt="Onramp: Convert ZAR to Crypto" class="img-fluid rounded">
-                        </div>
-                        <div class="widget-content">
-                            <div class="currency-display mb-3">
-                                <span class="currency-label">From:</span>
-                                <span class="currency-value">South African Rand (ZAR)</span>
-                            </div>
-                            
-                            <div class="amount-input mb-3">
-                                <label class="form-label">Amount (ZAR)</label>
-                                <input type="number" class="form-control" id="onramp-amount" placeholder="1000" value="1000">
-                            </div>
-                            
-                            <div class="crypto-select mb-3">
-                                <label class="form-label">Buy Cryptocurrency</label>
-                                <select class="form-select" id="onramp-crypto">
-                                    <option value="btc">Bitcoin (BTC)</option>
-                                    <option value="eth">Ethereum (ETH)</option>
-                                    <option value="usdc" selected>USDC</option>
-                                    <option value="usdt">Tether (USDT)</option>
-                                    <option value="sol">Solana (SOL)</option>
-                                </select>
-                            </div>
-                            
-                            <div class="conversion-display mb-3">
-                                <div class="conversion-rate">
-                                    <span id="onramp-result">≈ 55.12 USDC</span>
-                                </div>
-                                <small class="text-muted">Rate: 1 USDC = 18.15 ZAR</small>
-                            </div>
-                            
-                            <button class="btn btn-success w-100" onclick="simulateTransaction('onramp')">
-                                Buy Crypto
-                            </button>
-                        </div>
-                    </div>
+                <div class="widget-preview text-center">
+                    <h5 class="mb-3"><i class="fas fa-arrow-up me-2 text-success"></i>Buy Crypto (On-ramp)</h5>
+                    <img src="{{ url_for('static', filename='images/Onramp_widget_interface_mockup_e4b562e8.png') }}" 
+                         alt="Onramp Widget - Buy Crypto with South African Rand" 
+                         class="img-fluid rounded shadow-lg">
+                    <p class="text-muted mt-3">Convert South African Rand (ZAR) to cryptocurrency</p>
                 </div>
             </div>
             
             <!-- Off-ramp Widget -->
             <div class="col-lg-6 mb-4">
-                <div class="widget-card card shadow-sm h-100">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0"><i class="fas fa-arrow-down me-2"></i>Sell Crypto (Off-ramp)</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="widget-image mb-3">
-                            <img src="{{ url_for('static', filename='images/Crypto_offramp_conversion_illustration_c1db8228.png') }}" 
-                                 alt="Offramp: Convert Crypto to KES" class="img-fluid rounded">
-                        </div>
-                        <div class="widget-content">
-                            <div class="currency-display mb-3">
-                                <span class="currency-label">To:</span>
-                                <span class="currency-value">Kenyan Shillings (KES)</span>
-                            </div>
-                            
-                            <div class="crypto-select mb-3">
-                                <label class="form-label">Sell Cryptocurrency</label>
-                                <select class="form-select" id="offramp-crypto">
-                                    <option value="btc">Bitcoin (BTC)</option>
-                                    <option value="eth">Ethereum (ETH)</option>
-                                    <option value="usdc" selected>USDC</option>
-                                    <option value="usdt">Tether (USDT)</option>
-                                    <option value="sol">Solana (SOL)</option>
-                                </select>
-                            </div>
-                            
-                            <div class="amount-input mb-3">
-                                <label class="form-label">Amount (USDC)</label>
-                                <input type="number" class="form-control" id="offramp-amount" placeholder="100" value="100">
-                            </div>
-                            
-                            <div class="conversion-display mb-3">
-                                <div class="conversion-rate">
-                                    <span id="offramp-result">≈ 12,850 KES</span>
-                                </div>
-                                <small class="text-muted">Rate: 1 USDC = 128.50 KES</small>
-                            </div>
-                            
-                            <button class="btn btn-primary w-100" onclick="simulateTransaction('offramp')">
-                                Sell Crypto
-                            </button>
-                        </div>
-                    </div>
+                <div class="widget-preview text-center">
+                    <h5 class="mb-3"><i class="fas fa-arrow-down me-2 text-primary"></i>Sell Crypto (Off-ramp)</h5>
+                    <img src="{{ url_for('static', filename='images/Offramp_widget_interface_mockup_b4d55dae.png') }}" 
+                         alt="Offramp Widget - Sell Crypto for Kenyan Shillings" 
+                         class="img-fluid rounded shadow-lg">
+                    <p class="text-muted mt-3">Convert cryptocurrency to Kenyan Shillings (KES)</p>
                 </div>
             </div>
         </div>
