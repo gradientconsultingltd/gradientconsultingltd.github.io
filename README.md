@@ -40,5 +40,3 @@ This is a static website that can be deployed to any web hosting service:
 ## Contact Form
 The contact form uses Formspree and will send submissions directly to your email.
 
-## No Database Required
-This is a completely static website with no backend dependencies.
