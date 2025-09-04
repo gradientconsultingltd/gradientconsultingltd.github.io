@@ -1,4 +1,4 @@
-# GradientXchange - Static Website
+# GradientXchange - Static Website.
 
 ## Overview
 This is a static website for GradientXchange, a crypto aggregator for African markets.
