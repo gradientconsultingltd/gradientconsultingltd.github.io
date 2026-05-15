@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script>
+      var path = window.location.pathname.replace(/^\/gradient-consulting/, "") || "/";
+      sessionStorage.setItem("spa_redirect", path + window.location.search + window.location.hash);
+      window.location.replace("/gradient-consulting/");
+    </script>
+  </head>
+  <body></body>
+</html>
