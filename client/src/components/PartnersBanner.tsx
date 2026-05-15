@@ -22,8 +22,8 @@ const partners = [
   {
     name: "Mercor",
     logo: "/manus-storage/logo-mercor_2368d829.png",
-    // Light bg logo — invert to make it white on dark
-    filterStyle: "invert(1) brightness(0.9) opacity(0.8)",
+    // Original colours — displayed as-is
+    filterStyle: "brightness(1) opacity(0.92)",
     bgStyle: "transparent",
     isTextLogo: false,
   },
