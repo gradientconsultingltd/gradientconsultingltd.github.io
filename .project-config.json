@@ -1,0 +1,35 @@
+{
+  "build_command": "pnpm run build",
+  "capabilities": [],
+  "dev_command": "pnpm run dev",
+  "env_vars": {},
+  "experiments": null,
+  "git_remote": {
+    "repo_url": "s3://vida-prod-gitrepo/webdev-git/310519663663026471/6YtD7ZkrEYHm9AjvdcqbxU",
+    "access_key_id": "ASIAZV3A2ECZIFQN6XHU",
+    "secret_access_key": "OKWa0mLYekCDx7Zv38rKglC31R4+IKy1YS3CL3jf",
+    "session_token": "IQoJb3JpZ2luX2VjEKz//////////wEaCXVzLWVhc3QtMSJHMEUCIHiV4+0vT0sh3aqfywJBtlNVAI0dmYLPC6CskctuYF+kAiEA2oQ55PFTNcuzOkzZFoog9e5pv3gMlqbGIfQrn27SjbEq9QMIdRAEGgw2NjUzODYwOTg4NjYiDDjTJ67xD9IQ6gUFUSrSAwVnnMaf/hm2i+pBJGjCfnob2rNa51AEbtZh6+H9SQ2OA1zLO5f5eGFS+gOuQ9/u3EtHbuQHPBdirfxVz2pxNzBBZCRSGH2bXiWqqiHjUxcTtJw5MziI+S3ZqpSAGZqng0XUszvo0MFseVH2aCOTcF87sPD7s9V+yA8JSdIFYqOCG0tQi1rbsWZlXwLRujjIKfaUeQqGfJpa0KyOA75LmG749fOzPe26Jq35zsonTJdB1CMTDllgsHGLXk/XWGWq3d6693CquGmOTC91QjClX5Q03vGyV7BiaPJPIMQUu7X4UFxBLmNVZwMYWNKNFQoJFQGl/C2rMvn+7Mo8+Xq5cD3yKxBv68nZMJkXF6b+wOO7rfRWVd8uH1xSCZqFGXphKw7433nyCFPBEbZHH6uuoI1KTQbypOkj/ebsrlGgQBq2YH6ZUfObLbBB38V0XVM3lB38a1l/P/AG04CtT/i/PSlkZghPjXubJqrxBbjY/iRZvi2RtVhFSVQsMwnhR/f6pwAno0s6HaTjVD+9rXeXd2OGcXGkDi9EgCjiXuK7A3CfqX7tRT1EQiDuCXl+e3+xXNtCIwfyW5xeJ2nlb/0DazUv2xoiLZlNCEsbO9xxb38lXJow0ZKc0AY6nQFmU2dh96MjqVKem8utg1+9n+jSVlM4uvp25Sik8swKzK8xua7GVY1TL2OUSVrqcwQmKAMtnSMgN0TMWsEDwc7UMsCvxU/anX+pus8RbSlHOJz3QLwz00mNTuh7tBYUmfEz36MMfOsxhJx0RvXpEZrAaWFvzeopTCztw98O3wLny/UCz8z2zqSQXv45WpyjsbSPH09HxpefjiebyS1a",
+    "expiration": "2026-05-15T23:53:53.000Z"
+  },
+  "name": "gradient-consulting",
+  "path": "/home/ubuntu/gradient-consulting",
+  "port": 3000,
+  "secrets": {
+    "BUILT_IN_FORGE_API_KEY": "4XpZjJWnYmjtj5QfX5eXfx",
+    "BUILT_IN_FORGE_API_URL": "https://forge.manus.ai",
+    "JWT_SECRET": "UrLo2TixQ2eLyABLxkUea5",
+    "OAUTH_SERVER_URL": "https://api.manus.im",
+    "OWNER_NAME": "Chukwudi To-Anadu",
+    "OWNER_OPEN_ID": "aAuHfFFf5pGEpvDefezr6E",
+    "VITE_ANALYTICS_ENDPOINT": "https://manus-analytics.com",
+    "VITE_ANALYTICS_WEBSITE_ID": "58b1dcf1-2e6e-4fba-a93e-3a7b3fc249d9",
+    "VITE_APP_ID": "6YtD7ZkrEYHm9AjvdcqbxU",
+    "VITE_APP_LOGO": "",
+    "VITE_APP_TITLE": "Gradient Consulting",
+    "VITE_FRONTEND_FORGE_API_KEY": "XK8MGD89RMxeqFEGsg9joz",
+    "VITE_FRONTEND_FORGE_API_URL": "https://forge.manus.ai",
+    "VITE_OAUTH_PORTAL_URL": "https://manus.im"
+  },
+  "template_id": "web-static",
+  "test_command": "pnpm test"
+}
