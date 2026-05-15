@@ -1,32 +1,43 @@
 /* ============================================================
-   GRADIENT CONSULTING — AI Consulting Section
-   Design: Text left, AI image right, capability cards below
+   GRADIENT CONSULTING — AI Training Jobs Section
+   Design: Emphasis on AI training roles, RLHF, domain knowledge
+   Text left, AI image right, capability cards below
    ============================================================ */
 
-import { Brain, Network, Code2, BarChart3 } from "lucide-react";
+import { Brain, FlaskConical, MessageSquareCode, BarChart3, BookOpen, Cpu } from "lucide-react";
 
 const AI_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663663026471/6YtD7ZkrEYHm9AjvdcqbxU/gc-ai-section-ks4DCLD3T4eovDHghyJj7x.webp";
 
 const capabilities = [
   {
     icon: Brain,
-    title: "LLM Architecture",
-    desc: "Design and fine-tune large language model systems tailored to your domain and data.",
+    title: "RLHF Specialists",
+    desc: "Reinforcement Learning from Human Feedback trainers who evaluate, rank, and refine model outputs to align AI behaviour.",
   },
   {
-    icon: Network,
-    title: "Multi-Agent Systems",
-    desc: "Orchestrate networks of specialised AI agents that collaborate to solve complex tasks autonomously.",
+    icon: MessageSquareCode,
+    title: "Prompt Engineers",
+    desc: "Experts who craft, test, and optimise prompts to improve model accuracy, reasoning, and instruction-following.",
   },
   {
-    icon: Code2,
-    title: "RAG & Knowledge Bases",
-    desc: "Build retrieval-augmented generation pipelines that ground AI responses in your proprietary knowledge.",
+    icon: BookOpen,
+    title: "Domain Experts",
+    desc: "Subject-matter specialists — from medicine and law to finance and STEM — who provide ground-truth knowledge for AI training datasets.",
+  },
+  {
+    icon: FlaskConical,
+    title: "Data Annotators",
+    desc: "Skilled annotators for text, code, image, and multimodal datasets. Quality-focused, scalable, and domain-aware.",
+  },
+  {
+    icon: Cpu,
+    title: "AI Evaluators",
+    desc: "Human evaluators who assess model responses for accuracy, safety, and helpfulness across diverse task categories.",
   },
   {
     icon: BarChart3,
-    title: "AI Observability",
-    desc: "Monitor, evaluate, and continuously improve your AI systems with robust evaluation frameworks.",
+    title: "Red Teamers",
+    desc: "Adversarial testers who probe AI systems for failure modes, biases, and safety vulnerabilities before deployment.",
   },
 ];
 
@@ -37,7 +48,7 @@ export default function AISection() {
       className="py-28 relative overflow-hidden"
       style={{ background: "#0E0E10" }}
     >
-      {/* Subtle gradient glow in background */}
+      {/* Subtle gradient glow */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] pointer-events-none"
         style={{
@@ -48,7 +59,7 @@ export default function AISection() {
 
       <div className="container relative z-10">
         {/* Top: text + image */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-16">
           {/* Text column */}
           <div className="flex flex-col gap-8">
             <div className="animate-fade-up">
@@ -58,14 +69,15 @@ export default function AISection() {
                   style={{ background: "linear-gradient(90deg, #4F8EF7, #9B5CF6)" }}
                 />
                 <span
-                  className="font-mono-brand text-xs tracking-widest uppercase"
                   style={{
                     fontFamily: "JetBrains Mono, monospace",
+                    fontSize: "0.7rem",
                     color: "#9B5CF6",
                     letterSpacing: "0.18em",
+                    textTransform: "uppercase",
                   }}
                 >
-                  Agentic AI Consulting
+                  AI Training Recruitment
                 </span>
               </div>
               <h2
@@ -77,7 +89,7 @@ export default function AISection() {
                   color: "#F0EEE8",
                 }}
               >
-                Build AI that
+                The humans behind
                 <br />
                 <span
                   style={{
@@ -87,13 +99,13 @@ export default function AISection() {
                     backgroundClip: "text",
                   }}
                 >
-                  thinks and acts.
+                  smarter AI.
                 </span>
               </h2>
             </div>
 
             <p
-              className="animate-fade-up delay-100 font-body"
+              className="animate-fade-up delay-100"
               style={{
                 fontFamily: "Outfit, sans-serif",
                 color: "#8A8A9A",
@@ -101,48 +113,52 @@ export default function AISection() {
                 fontSize: "1rem",
               }}
             >
-              We don't just advise on AI — we build it. Our team of AI engineers and
-              strategists design agentic systems that reason, plan, and execute complex
-              workflows with minimal human oversight. From proof-of-concept to production.
+              The most capable AI models are built on high-quality human feedback.
+              We recruit the specialists who make that possible — RLHF trainers,
+              domain experts, data annotators, and AI evaluators — for the world's
+              leading AI training platforms.
             </p>
 
-            <div
-              className="animate-fade-up delay-200 p-5 rounded-xl"
+            <p
+              className="animate-fade-up delay-150"
               style={{
-                background: "rgba(155,92,246,0.06)",
-                border: "1px solid rgba(155,92,246,0.18)",
+                fontFamily: "Outfit, sans-serif",
+                color: "#8A8A9A",
+                lineHeight: 1.75,
+                fontSize: "1rem",
               }}
             >
-              <p
-                style={{
-                  fontFamily: "JetBrains Mono, monospace",
-                  color: "#9B5CF6",
-                  fontSize: "0.8rem",
-                  lineHeight: 1.6,
-                }}
-              >
-                <span style={{ color: "#4F8EF7" }}>const</span>{" "}
-                <span style={{ color: "#F0EEE8" }}>agent</span>{" "}
-                <span style={{ color: "#6B6B7A" }}>=</span>{" "}
-                <span style={{ color: "#9B5CF6" }}>new</span>{" "}
-                <span style={{ color: "#F0EEE8" }}>GradientAgent</span>
-                {"({"}
-                <br />
-                &nbsp;&nbsp;<span style={{ color: "#4F8EF7" }}>capabilities</span>
-                {": ["}
-                <span style={{ color: "#A0A0B0" }}>'reason'</span>
-                {", "}
-                <span style={{ color: "#A0A0B0" }}>'plan'</span>
-                {", "}
-                <span style={{ color: "#A0A0B0" }}>'execute'</span>
-                {"],"}
-                <br />
-                &nbsp;&nbsp;<span style={{ color: "#4F8EF7" }}>domain</span>
-                {": "}
-                <span style={{ color: "#A0A0B0" }}>'your-business'</span>
-                <br />
-                {"})"}
-              </p>
+              Our talent pool spans deep <strong style={{ color: "#A0A0B0" }}>domain knowledge</strong> across
+              medicine, law, finance, engineering, and the sciences — because great AI
+              training requires genuine expertise, not just technical skills.
+            </p>
+
+            {/* RLHF highlight pill */}
+            <div
+              className="animate-fade-up delay-200 flex flex-wrap gap-2.5"
+            >
+              {[
+                "RLHF",
+                "Instruction Tuning",
+                "Preference Data",
+                "Red Teaming",
+                "Constitutional AI",
+                "Domain Annotation",
+              ].map((tag) => (
+                <span
+                  key={tag}
+                  className="px-3 py-1.5 rounded-full text-xs"
+                  style={{
+                    fontFamily: "JetBrains Mono, monospace",
+                    background: "rgba(155,92,246,0.08)",
+                    border: "1px solid rgba(155,92,246,0.2)",
+                    color: "#9B5CF6",
+                    fontSize: "0.72rem",
+                  }}
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
 
             <div className="animate-fade-up delay-300">
@@ -152,7 +168,7 @@ export default function AISection() {
                   document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })
                 }
               >
-                <span>Discuss Your AI Project</span>
+                <span>Find AI Training Talent</span>
               </button>
             </div>
           </div>
@@ -169,21 +185,58 @@ export default function AISection() {
             >
               <img
                 src={AI_IMG}
-                alt="Agentic AI"
+                alt="AI Training"
                 className="w-full h-full object-cover"
               />
+            </div>
+
+            {/* Floating RLHF badge */}
+            <div
+              className="absolute -bottom-5 -left-4 md:-left-8 px-5 py-4 rounded-xl"
+              style={{
+                background: "#1C1C22",
+                border: "1px solid rgba(155,92,246,0.3)",
+                boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: "JetBrains Mono, monospace",
+                  color: "#9B5CF6",
+                  fontSize: "0.7rem",
+                  letterSpacing: "0.12em",
+                  textTransform: "uppercase",
+                  marginBottom: "4px",
+                }}
+              >
+                Specialising in
+              </p>
+              <p
+                style={{
+                  fontFamily: "Syne, sans-serif",
+                  fontWeight: 800,
+                  color: "#F0EEE8",
+                  fontSize: "1.1rem",
+                  background: "linear-gradient(135deg, #9B5CF6 0%, #4F8EF7 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                RLHF Talent
+              </p>
             </div>
           </div>
         </div>
 
         {/* Capabilities grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {capabilities.map((cap, i) => {
             const Icon = cap.icon;
             return (
               <div
                 key={cap.title}
-                className={`animate-fade-up card-surface rounded-xl p-6 flex flex-col gap-4 group delay-${(i + 1) * 100}`}
+                className={`animate-fade-up card-surface rounded-xl p-6 flex flex-col gap-4 group delay-${Math.min((i + 1) * 100, 600)}`}
               >
                 <div
                   className="w-9 h-9 rounded-lg flex items-center justify-center"

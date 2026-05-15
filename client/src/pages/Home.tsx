@@ -2,12 +2,14 @@
    GRADIENT CONSULTING — Home Page
    Design: Terminal Modernism — dark charcoal, blue→violet gradient
    Typography: Syne ExtraBold display + Outfit body
+   Updated: AI training focus, partner logos banner, RLHF, domain knowledge
    ============================================================ */
 
 import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import StatsSection from "@/components/StatsSection";
+import PartnersBanner from "@/components/PartnersBanner";
 import ServicesSection from "@/components/ServicesSection";
 import RecruitmentSection from "@/components/RecruitmentSection";
 import AISection from "@/components/AISection";
@@ -44,6 +46,7 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <StatsSection />
+      <PartnersBanner />
       <ServicesSection />
       <RecruitmentSection />
       <AISection />

@@ -1,6 +1,7 @@
 /* ============================================================
    GRADIENT CONSULTING — Tech Recruitment Section
    Design: Two-column, image left / text right, dark surface bg
+   Updated: domain knowledge emphasis, RLHF included
    ============================================================ */
 
 import { CheckCircle2 } from "lucide-react";
@@ -9,17 +10,19 @@ const RECRUITMENT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/31051966366302647
 
 const highlights = [
   "Software Engineers & Architects",
+  "RLHF & AI Training Specialists",
+  "Domain Experts (Medicine, Law, Finance, STEM)",
   "Data Scientists & ML Engineers",
+  "Prompt Engineers & AI Evaluators",
+  "Data Annotators & Red Teamers",
   "DevOps, Platform & Cloud Engineers",
-  "Product Managers & Designers",
   "CTO, VP Engineering & Tech Leadership",
-  "AI/ML Research & Applied Scientists",
 ];
 
 const stats = [
-  { value: "14", unit: "days", label: "Average time-to-hire" },
-  { value: "98%", unit: "", label: "Candidate retention at 12 months" },
-  { value: "200+", unit: "", label: "Placements across the UK" },
+  { value: "200+", unit: "", label: "Placements made" },
+  { value: "98%", unit: "", label: "Candidate retention" },
+  { value: "3", unit: "", label: "AI platform partners" },
 ];
 
 export default function RecruitmentSection() {
@@ -75,17 +78,7 @@ export default function RecruitmentSection() {
                     lineHeight: 1,
                   }}
                 >
-                  14
-                </span>
-                <span
-                  style={{
-                    fontFamily: "Outfit, sans-serif",
-                    color: "#6B6B7A",
-                    fontSize: "0.85rem",
-                    paddingBottom: "4px",
-                  }}
-                >
-                  day avg. hire
+                  200+
                 </span>
               </div>
               <p
@@ -96,7 +89,7 @@ export default function RecruitmentSection() {
                   marginTop: "4px",
                 }}
               >
-                Faster than industry average
+                Placements across tech & AI
               </p>
             </div>
           </div>
@@ -110,14 +103,15 @@ export default function RecruitmentSection() {
                   style={{ background: "linear-gradient(90deg, #4F8EF7, #9B5CF6)" }}
                 />
                 <span
-                  className="font-mono-brand text-xs tracking-widest uppercase"
                   style={{
                     fontFamily: "JetBrains Mono, monospace",
+                    fontSize: "0.7rem",
                     color: "#4F8EF7",
                     letterSpacing: "0.18em",
+                    textTransform: "uppercase",
                   }}
                 >
-                  Tech Recruitment
+                  Tech & AI Recruitment
                 </span>
               </div>
               <h2
@@ -129,7 +123,7 @@ export default function RecruitmentSection() {
                   color: "#F0EEE8",
                 }}
               >
-                The right talent,
+                Talent with skills
                 <br />
                 <span
                   style={{
@@ -139,13 +133,13 @@ export default function RecruitmentSection() {
                     backgroundClip: "text",
                   }}
                 >
-                  right now.
+                  and domain knowledge.
                 </span>
               </h2>
             </div>
 
             <p
-              className="animate-fade-up delay-100 font-body"
+              className="animate-fade-up delay-100"
               style={{
                 fontFamily: "Outfit, sans-serif",
                 color: "#8A8A9A",
@@ -153,9 +147,10 @@ export default function RecruitmentSection() {
                 fontSize: "1rem",
               }}
             >
-              We specialise in placing high-calibre technology professionals across the
-              full stack — from individual contributors to executive leadership. Our deep
-              network and sector expertise means we move fast without compromising on fit.
+              We place high-calibre technology professionals and domain specialists
+              across the full spectrum of tech and AI roles. From software engineers
+              to RLHF trainers, from data scientists to subject-matter experts whose
+              knowledge powers the next generation of AI models.
             </p>
 
             {/* Highlights list */}

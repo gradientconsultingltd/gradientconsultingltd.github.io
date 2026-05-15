@@ -26,10 +26,9 @@ function useCountUp(target: number, duration = 1800, start = false) {
 
 const statsData = [
   { value: 200, suffix: "+", label: "Successful Placements" },
-  { value: 50, suffix: "+", label: "AI Projects Delivered" },
+  { value: 50, suffix: "+", label: "AI Training Projects" },
   { value: 98, suffix: "%", label: "Candidate Retention" },
-  { value: 14, suffix: " days", label: "Average Time-to-Hire" },
-  { value: 8, suffix: "+", label: "Years of Expertise" },
+  { value: 3, suffix: "", label: "Platform Partners" },
 ];
 
 function StatItem({ value, suffix, label }: { value: number; suffix: string; label: string }) {

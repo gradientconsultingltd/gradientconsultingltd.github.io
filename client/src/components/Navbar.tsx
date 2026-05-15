@@ -9,7 +9,7 @@ import { Menu, X } from "lucide-react";
 const navLinks = [
   { label: "Services", href: "#services" },
   { label: "Recruitment", href: "#recruitment" },
-  { label: "AI Consulting", href: "#ai-consulting" },
+  { label: "AI Training", href: "#ai-consulting" },
   { label: "Process", href: "#process" },
   { label: "Contact", href: "#contact" },
 ];
@@ -68,11 +68,26 @@ export default function Navbar() {
                 />
               </div>
               <span
-                className="font-display font-800 text-lg tracking-tight text-white"
-                style={{ fontFamily: "Syne, sans-serif", fontWeight: 800 }}
+                style={{
+                  fontFamily: "Syne, sans-serif",
+                  fontWeight: 800,
+                  fontSize: "1.1rem",
+                  color: "#F0EEE8",
+                  letterSpacing: "-0.01em",
+                }}
               >
                 Gradient
-                <span className="gradient-text ml-1">Consulting</span>
+                <span
+                  style={{
+                    marginLeft: "4px",
+                    background: "linear-gradient(135deg, #4F8EF7 0%, #9B5CF6 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  Consulting
+                </span>
               </span>
             </a>
 
@@ -82,8 +97,22 @@ export default function Navbar() {
                 <button
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
-                  className="gradient-underline text-sm font-body text-[#A0A0B0] hover:text-white transition-colors duration-200"
-                  style={{ fontFamily: "Outfit, sans-serif", fontWeight: 500 }}
+                  className="gradient-underline text-sm"
+                  style={{
+                    fontFamily: "Outfit, sans-serif",
+                    fontWeight: 500,
+                    color: "#A0A0B0",
+                    background: "none",
+                    border: "none",
+                    padding: 0,
+                    transition: "color 0.2s ease",
+                  }}
+                  onMouseEnter={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "#F0EEE8")
+                  }
+                  onMouseLeave={(e) =>
+                    ((e.currentTarget as HTMLElement).style.color = "#A0A0B0")
+                  }
                 >
                   {link.label}
                 </button>
@@ -124,10 +153,13 @@ export default function Navbar() {
             <button
               key={link.href}
               onClick={() => handleNavClick(link.href)}
-              className="text-2xl font-display font-800 text-white hover:gradient-text transition-all"
               style={{
                 fontFamily: "Syne, sans-serif",
                 fontWeight: 800,
+                fontSize: "1.5rem",
+                color: "#F0EEE8",
+                background: "none",
+                border: "none",
                 transitionDelay: `${i * 50}ms`,
               }}
             >

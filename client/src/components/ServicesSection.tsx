@@ -1,9 +1,10 @@
 /* ============================================================
    GRADIENT CONSULTING — Services Section
    Design: Bento-grid layout, numbered cards, gradient borders on hover
+   Updated: AI training jobs emphasis, RLHF, domain knowledge
    ============================================================ */
 
-import { Users, Bot, Cpu, Search, Zap, Globe } from "lucide-react";
+import { Users, Brain, Search, Zap, BookOpen, FlaskConical } from "lucide-react";
 
 const services = [
   {
@@ -17,20 +18,20 @@ const services = [
   },
   {
     number: "02",
-    icon: Bot,
-    title: "Agentic AI Systems",
+    icon: Brain,
+    title: "RLHF & AI Training Roles",
     description:
-      "Design and deploy autonomous AI agents that reason, plan, and act. From LLM orchestration to multi-agent workflows.",
-    tags: ["LLMs", "Agents", "Automation"],
+      "Recruiting the human experts who train the world's most capable AI models — RLHF specialists, preference data annotators, and AI evaluators.",
+    tags: ["RLHF", "Annotation", "Evaluation"],
     wide: false,
   },
   {
     number: "03",
-    icon: Cpu,
-    title: "AI Strategy & Consulting",
+    icon: BookOpen,
+    title: "Domain Expert Placement",
     description:
-      "Roadmap your organisation's AI transformation with expert guidance on tooling, architecture, and change management.",
-    tags: ["Strategy", "Architecture"],
+      "Connecting AI platforms with subject-matter experts across medicine, law, finance, STEM, and the humanities — the domain knowledge that makes AI trustworthy.",
+    tags: ["Medicine", "Law", "Finance", "STEM"],
     wide: false,
   },
   {
@@ -44,19 +45,19 @@ const services = [
   },
   {
     number: "05",
-    icon: Zap,
-    title: "AI Integration",
+    icon: FlaskConical,
+    title: "Red Teaming & Safety",
     description:
-      "Embed AI capabilities into your existing products and workflows — from RAG pipelines to intelligent process automation.",
-    tags: ["RAG", "Pipelines", "APIs"],
+      "Sourcing adversarial AI testers and safety researchers who probe models for failure modes, biases, and vulnerabilities before deployment.",
+    tags: ["Red Teaming", "Safety", "Alignment"],
     wide: false,
   },
   {
     number: "06",
-    icon: Globe,
+    icon: Zap,
     title: "Contract & Interim",
     description:
-      "Rapid deployment of specialist contractors for project-critical roles. Flexible engagements from days to years.",
+      "Rapid deployment of specialist contractors for project-critical roles. Flexible engagements from days to years — including AI training sprints.",
     tags: ["Contract", "Interim", "Flexible"],
     wide: true,
   },
@@ -75,11 +76,12 @@ export default function ServicesSection() {
                 style={{ background: "linear-gradient(90deg, #4F8EF7, #9B5CF6)" }}
               />
               <span
-                className="font-mono-brand text-xs tracking-widest uppercase"
                 style={{
                   fontFamily: "JetBrains Mono, monospace",
+                  fontSize: "0.7rem",
                   color: "#4F8EF7",
                   letterSpacing: "0.18em",
+                  textTransform: "uppercase",
                 }}
               >
                 What We Do
@@ -94,7 +96,7 @@ export default function ServicesSection() {
                 color: "#F0EEE8",
               }}
             >
-              Two disciplines.
+              Tech recruitment.
               <br />
               <span
                 style={{
@@ -104,20 +106,22 @@ export default function ServicesSection() {
                   backgroundClip: "text",
                 }}
               >
-                One vision.
+                AI training talent.
               </span>
             </h2>
           </div>
           <p
-            className="animate-fade-up delay-200 font-body max-w-sm"
+            className="animate-fade-up delay-200"
             style={{
               fontFamily: "Outfit, sans-serif",
               color: "#6B6B7A",
               lineHeight: 1.7,
+              maxWidth: "340px",
             }}
           >
-            We bridge the gap between exceptional human talent and intelligent
-            machine capability — helping organisations thrive in the age of AI.
+            We bridge the gap between exceptional human talent — engineers, domain
+            experts, and RLHF specialists — and the organisations building the
+            future of AI.
           </p>
         </div>
 
@@ -165,7 +169,6 @@ export default function ServicesSection() {
                 {/* Content */}
                 <div className="flex flex-col gap-3 flex-1">
                   <h3
-                    className="font-display"
                     style={{
                       fontFamily: "Syne, sans-serif",
                       fontWeight: 700,

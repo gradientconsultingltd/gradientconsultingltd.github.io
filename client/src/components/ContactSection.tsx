@@ -2,6 +2,7 @@
    GRADIENT CONSULTING — Contact / CTA Section
    Design: Full-width gradient background image, large headline,
    two-column form + info
+   Updated: AI training focus options
    ============================================================ */
 
 import { useState } from "react";
@@ -21,7 +22,6 @@ export default function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate submission
     setSubmitted(true);
   };
 
@@ -88,8 +88,8 @@ export default function ContactSection() {
                 marginBottom: "2.5rem",
               }}
             >
-              Whether you're scaling your engineering team or transforming your business
-              with AI, we're ready to help. Let's start a conversation.
+              Whether you're scaling your engineering team, sourcing RLHF specialists,
+              or finding domain experts for AI training — we're ready to help.
             </p>
           </div>
         </div>
@@ -222,9 +222,10 @@ export default function ContactSection() {
                 </p>
                 {[
                   "Tech Recruitment (Perm & Contract)",
-                  "Agentic AI System Design",
-                  "AI Strategy & Roadmapping",
+                  "RLHF & AI Training Talent",
+                  "Domain Expert Placement",
                   "Executive & Leadership Search",
+                  "AI Evaluators & Red Teamers",
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-2 mb-2">
                     <CheckCircle2 size={13} style={{ color: "#4F8EF7", flexShrink: 0 }} />
@@ -283,10 +284,7 @@ export default function ContactSection() {
                   </p>
                 </div>
               ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  className="flex flex-col gap-5"
-                >
+                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div className="flex flex-col gap-1.5">
                       <label
@@ -382,20 +380,23 @@ export default function ContactSection() {
                       <option value="" disabled style={{ background: "#1C1C22" }}>
                         Select an option
                       </option>
-                      <option value="recruitment" style={{ background: "#1C1C22" }}>
-                        Tech Recruitment
+                      <option value="tech-recruitment" style={{ background: "#1C1C22" }}>
+                        Tech Recruitment (Perm / Contract)
                       </option>
-                      <option value="ai-consulting" style={{ background: "#1C1C22" }}>
-                        AI Consulting
+                      <option value="rlhf-talent" style={{ background: "#1C1C22" }}>
+                        RLHF & AI Training Talent
+                      </option>
+                      <option value="domain-experts" style={{ background: "#1C1C22" }}>
+                        Domain Expert Placement
                       </option>
                       <option value="executive-search" style={{ background: "#1C1C22" }}>
                         Executive Search
                       </option>
-                      <option value="contract" style={{ background: "#1C1C22" }}>
-                        Contract / Interim
+                      <option value="red-teaming" style={{ background: "#1C1C22" }}>
+                        Red Teaming & AI Safety Roles
                       </option>
-                      <option value="both" style={{ background: "#1C1C22" }}>
-                        Both Recruitment & AI
+                      <option value="general" style={{ background: "#1C1C22" }}>
+                        General Enquiry
                       </option>
                     </select>
                   </div>

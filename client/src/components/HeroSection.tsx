@@ -2,6 +2,7 @@
    GRADIENT CONSULTING — Hero Section
    Design: Full-height dark hero, left-aligned display text,
    gradient data-stream background image, animated word reveal
+   Updated: AI training jobs, domain knowledge, RLHF
    ============================================================ */
 
 import { useEffect, useState } from "react";
@@ -9,7 +10,7 @@ import { ChevronDown } from "lucide-react";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663663026471/6YtD7ZkrEYHm9AjvdcqbxU/gc-hero-bg-C93zcDt8t7JexJpt9faELi.webp";
 
-const words = ["Talent.", "Intelligence.", "Transformation."];
+const words = ["Talent.", "Domain Experts.", "RLHF Specialists."];
 
 export default function HeroSection() {
   const [wordIndex, setWordIndex] = useState(0);
@@ -81,14 +82,15 @@ export default function HeroSection() {
               style={{ background: "linear-gradient(90deg, #4F8EF7, #9B5CF6)" }}
             />
             <span
-              className="font-mono-brand text-xs tracking-widest uppercase"
               style={{
                 fontFamily: "JetBrains Mono, monospace",
+                fontSize: "0.7rem",
                 color: "#4F8EF7",
                 letterSpacing: "0.18em",
+                textTransform: "uppercase",
               }}
             >
-              UK Tech Recruitment & AI Consulting
+              UK Tech Recruitment & AI Training Jobs
             </span>
           </div>
 
@@ -105,10 +107,9 @@ export default function HeroSection() {
               transitionDelay: "200ms",
             }}
           >
-            We Deliver
+            We Place
             <br />
             <span
-              className="transition-all duration-400"
               style={{
                 background: "linear-gradient(135deg, #4F8EF7 0%, #9B5CF6 100%)",
                 WebkitBackgroundClip: "text",
@@ -136,9 +137,9 @@ export default function HeroSection() {
               transitionDelay: "350ms",
             }}
           >
-            Gradient Consulting connects exceptional tech talent with forward-thinking
-            organisations — and builds the agentic AI systems that power the next generation
-            of business.
+            Gradient Consulting is a UK-based tech recruitment and AI training consultancy.
+            We place engineers, domain experts, and RLHF specialists with the platforms
+            building tomorrow's AI — including Outlier, Micro1, and Mercor.
           </p>
 
           {/* CTAs */}
@@ -171,20 +172,32 @@ export default function HeroSection() {
           >
             {[
               { value: "200+", label: "Placements" },
-              { value: "50+", label: "AI Projects" },
+              { value: "RLHF", label: "Specialists" },
               { value: "98%", label: "Retention Rate" },
               { value: "UK-Based", label: "Expert Team" },
             ].map((stat) => (
               <div key={stat.label} className="flex flex-col">
                 <span
-                  className="font-display text-2xl font-800 gradient-text"
-                  style={{ fontFamily: "Syne, sans-serif", fontWeight: 800 }}
+                  className="font-display text-2xl font-800"
+                  style={{
+                    fontFamily: "Syne, sans-serif",
+                    fontWeight: 800,
+                    background: "linear-gradient(135deg, #4F8EF7 0%, #9B5CF6 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
                 >
                   {stat.value}
                 </span>
                 <span
-                  className="text-xs uppercase tracking-widest"
-                  style={{ color: "#6B6B7A", fontFamily: "Outfit, sans-serif" }}
+                  style={{
+                    fontFamily: "Outfit, sans-serif",
+                    fontSize: "0.7rem",
+                    color: "#6B6B7A",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                  }}
                 >
                   {stat.label}
                 </span>
@@ -201,11 +214,12 @@ export default function HeroSection() {
         aria-label="Scroll down"
       >
         <span
-          className="text-xs tracking-widest uppercase"
           style={{
             fontFamily: "JetBrains Mono, monospace",
             color: "#6B6B7A",
             fontSize: "10px",
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
           }}
         >
           Scroll
