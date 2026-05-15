@@ -1,29 +1,51 @@
 /* ============================================================
    GRADIENT CONSULTING — Partners / Clients Banner
    Design: Infinite CSS marquee scroll of partner logos
-   Partners: Outlier, Micro1, Mercor (AI training platforms)
+   Partners: Outlier, Micro1, Mercor, Turing
    ============================================================ */
+
+// Logo display strategy:
+// - Outlier: white text on black bg → use as-is, opacity 0.85
+// - Micro1: rendered as styled text logo (white on transparent)
+// - Mercor: light bg logo → use brightness/invert CSS filter to make it dark-bg friendly
+// - Turing: white on black bg → use as-is, opacity 0.85
 
 const partners = [
   {
     name: "Outlier",
-    logo: "/manus-storage/logo-outlier_10a22ac0.jpg",
-    isPhoto: true,
+    logo: "/manus-storage/logo-outlier-v2_aac2fea1.png",
+    // White text on black — works natively on dark bg
+    filterStyle: "brightness(1) opacity(0.85)",
+    bgStyle: "transparent",
+    isTextLogo: false,
   },
   {
     name: "Mercor",
     logo: "/manus-storage/logo-mercor_2368d829.png",
-    isPhoto: false,
+    // Light bg logo — invert to make it white on dark
+    filterStyle: "invert(1) brightness(0.9) opacity(0.8)",
+    bgStyle: "transparent",
+    isTextLogo: false,
   },
   {
     name: "micro1",
-    logo: "/manus-storage/logo-micro1_ba68f21e.jpg",
-    isPhoto: true,
+    logo: null,
+    filterStyle: "",
+    bgStyle: "transparent",
+    isTextLogo: true,
+  },
+  {
+    name: "Turing",
+    logo: "/manus-storage/logo-turing_192fbcb6.png",
+    // White on black — works natively
+    filterStyle: "brightness(1.05) opacity(0.85)",
+    bgStyle: "transparent",
+    isTextLogo: false,
   },
 ];
 
 // Duplicate for seamless loop
-const allPartners = [...partners, ...partners, ...partners, ...partners];
+const allPartners = [...partners, ...partners, ...partners];
 
 export default function PartnersBanner() {
   return (
@@ -39,15 +61,13 @@ export default function PartnersBanner() {
       <div
         className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
         style={{
-          background:
-            "linear-gradient(to right, #16161A 0%, transparent 100%)",
+          background: "linear-gradient(to right, #16161A 0%, transparent 100%)",
         }}
       />
       <div
         className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
         style={{
-          background:
-            "linear-gradient(to left, #16161A 0%, transparent 100%)",
+          background: "linear-gradient(to left, #16161A 0%, transparent 100%)",
         }}
       />
 
@@ -75,9 +95,9 @@ export default function PartnersBanner() {
       {/* Marquee track */}
       <div className="relative overflow-hidden">
         <div
-          className="flex items-center gap-12"
+          className="flex items-center gap-10"
           style={{
-            animation: "marquee 28s linear infinite",
+            animation: "marquee 32s linear infinite",
             width: "max-content",
           }}
         >
@@ -86,9 +106,9 @@ export default function PartnersBanner() {
               key={`${partner.name}-${i}`}
               className="flex items-center justify-center flex-shrink-0"
               style={{
-                width: "180px",
-                height: "64px",
-                padding: "10px 20px",
+                width: "200px",
+                height: "68px",
+                padding: "12px 24px",
                 borderRadius: "10px",
                 background: "rgba(255,255,255,0.03)",
                 border: "1px solid rgba(255,255,255,0.07)",
@@ -103,19 +123,33 @@ export default function PartnersBanner() {
                   "rgba(255,255,255,0.07)";
               }}
             >
-              <img
-                src={partner.logo}
-                alt={partner.name}
-                style={{
-                  maxWidth: "100%",
-                  maxHeight: "100%",
-                  objectFit: "contain",
-                  filter: partner.isPhoto
-                    ? "brightness(1.1) contrast(1.05) grayscale(0.2)"
-                    : "brightness(1.1) contrast(1.1)",
-                  opacity: 0.85,
-                }}
-              />
+              {partner.isTextLogo ? (
+                /* Micro1 — styled text logo */
+                <span
+                  style={{
+                    fontFamily: "system-ui, -apple-system, sans-serif",
+                    fontWeight: 700,
+                    fontSize: "1.4rem",
+                    color: "rgba(255,255,255,0.82)",
+                    letterSpacing: "-0.02em",
+                    userSelect: "none",
+                  }}
+                >
+                  micro<span style={{ color: "rgba(255,255,255,0.82)" }}>1</span>
+                  <span style={{ color: "#4F8EF7", fontSize: "1.6rem", lineHeight: 0 }}>.</span>
+                </span>
+              ) : (
+                <img
+                  src={partner.logo!}
+                  alt={partner.name}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "44px",
+                    objectFit: "contain",
+                    filter: partner.filterStyle,
+                  }}
+                />
+              )}
             </div>
           ))}
         </div>
@@ -124,7 +158,7 @@ export default function PartnersBanner() {
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+          100% { transform: translateX(-${100 / 3}%); }
         }
       `}</style>
     </section>
