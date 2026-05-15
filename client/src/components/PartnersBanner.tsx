@@ -36,9 +36,9 @@ const partners = [
   },
   {
     name: "Turing",
-    logo: "/manus-storage/logo-turing_192fbcb6.png",
-    // White on black — works natively
-    filterStyle: "brightness(1.05) opacity(0.85)",
+    logo: "/manus-storage/logo-turing-v2_1491987b.svg",
+    // Official white SVG — works natively on dark bg
+    filterStyle: "brightness(1) opacity(0.88)",
     bgStyle: "transparent",
     isTextLogo: false,
   },
