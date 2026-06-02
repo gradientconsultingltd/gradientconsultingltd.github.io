@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 function makeRing(count: number, radius: number) {
   return Array.from({ length: count }, (_, i) => {
@@ -16,15 +17,16 @@ const INNER_RING = makeRing(24, 24);
 const OUTER_RING = makeRing(34, 38);
 
 export default function AboutSection() {
+  const isMobile = useIsMobile();
   return (
     <section id="about" style={{ background: "#FFFFFF" }}>
-      <div style={{ maxWidth: 1280, margin: "0 auto", width: "100%", padding: "120px 80px", display: "flex", alignItems: "center", gap: 96 }}>
+      <div style={{ maxWidth: 1280, margin: "0 auto", width: "100%", padding: isMobile ? "64px 24px" : "120px 80px", display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "stretch" : "center", gap: isMobile ? 40 : 96 }}>
 
         {/* LEFT — AI Clarity card */}
         <div className="animate-scale-in" style={{
           flexShrink: 0,
-          width: 420,
-          height: 420,
+          width: isMobile ? "100%" : 420,
+          height: isMobile ? 280 : 420,
           borderRadius: 20,
           background: "linear-gradient(155deg, #D8CCEE 0%, #C4B2E8 40%, #A994D4 80%, #9882C8 100%)",
           position: "relative",
@@ -122,7 +124,7 @@ export default function AboutSection() {
         <div className="animate-fade-up delay-100" style={{
           flex: 1, display: "flex", flexDirection: "column",
           justifyContent: "center",
-          padding: "0 48px 0 0",
+          padding: isMobile ? "0" : "0 48px 0 0",
         }}>
           <p style={{
             fontFamily: "Zalando Sans, sans-serif", fontSize: "0.95rem",

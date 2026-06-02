@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 // Starting positions for each particle (percentage-based)
 const SEED = [
@@ -15,6 +16,7 @@ const SEED = [
 export default function HeroSection() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [ready, setReady] = useState(false);
+  const isMobile = useIsMobile();
   const ease = "cubic-bezier(0.25, 0.46, 0.45, 0.94)";
 
   // Fade-in on mount
@@ -129,8 +131,8 @@ export default function HeroSection() {
       <div style={{
         position: "relative", zIndex: 1,
         textAlign: "center",
-        padding: "0 48px",
-        maxWidth: "min(75vw, 1100px)",
+        padding: isMobile ? "0 24px" : "0 48px",
+        maxWidth: isMobile ? "100%" : "min(75vw, 1100px)",
         width: "100%",
       }}>
         <h1 style={{

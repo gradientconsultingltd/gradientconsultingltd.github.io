@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [onDark, setOnDark] = useState(true);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const fn = () => {
@@ -29,7 +31,7 @@ export default function Navbar() {
       backdropFilter: scrolled ? "blur(16px)" : "none",
       borderBottom: scrolled ? `1px solid ${onDark ? "rgba(255,255,255,0.06)" : "#EEEEEE"}` : "none",
       transition: "background 0.4s ease, border-color 0.4s ease",
-      padding: "0 48px",
+      padding: isMobile ? "0 16px" : "0 48px",
     }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
 
@@ -39,7 +41,7 @@ export default function Navbar() {
             src="/logo-gradient.png"
             alt="Gradient Consulting"
             style={{
-              height: 80,
+              height: isMobile ? 44 : 80,
               width: "auto",
               display: "block",
               filter: onDark ? "none" : "invert(1)",
@@ -48,10 +50,12 @@ export default function Navbar() {
           />
         </button>
 
-        {/* Centre label */}
-        <span style={{ fontFamily: "Zalando Sans, sans-serif", fontSize: "0.8rem", color: onDark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)", letterSpacing: "0.04em", position: "absolute", left: "50%", transform: "translateX(-50%)", transition: "color 0.3s" }}>
-          Global AI Talent &amp; Recruitment
-        </span>
+        {/* Centre label — hidden on mobile */}
+        {!isMobile && (
+          <span style={{ fontFamily: "Zalando Sans, sans-serif", fontSize: "0.8rem", color: onDark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)", letterSpacing: "0.04em", position: "absolute", left: "50%", transform: "translateX(-50%)", transition: "color 0.3s" }}>
+            Global AI Talent &amp; Recruitment
+          </span>
+        )}
 
         {/* CTA */}
         <button onClick={() => go("#contact")}

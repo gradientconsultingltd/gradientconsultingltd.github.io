@@ -128,14 +128,17 @@ function ImgCard({ phase, pIdx }: { phase: typeof phases[0]; pIdx: number }) {
   );
 }
 
-export default function ProcessSection() {
-  return (
-    <section id="process" style={{ background: "#F5F5F3", padding: "7rem 0" }}>
-      <div className="container">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "start" }}>
+import { useIsMobile } from "@/hooks/useIsMobile";
 
-          {/* LEFT — sticky */}
-          <div style={{ position: "sticky", top: 88 }}>
+export default function ProcessSection() {
+  const isMobile = useIsMobile();
+  return (
+    <section id="process" style={{ background: "#F5F5F3", padding: isMobile ? "4rem 0" : "7rem 0" }}>
+      <div className="container">
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "3rem" : "5rem", alignItems: "start" }}>
+
+          {/* LEFT — sticky on desktop only */}
+          <div style={{ position: isMobile ? "static" : "sticky", top: 88 }}>
             <p style={{ fontFamily: "Zalando Sans, sans-serif", fontSize: "0.72rem", color: "#ABABAB", letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "1.5rem" }}>
               Our Process
             </p>

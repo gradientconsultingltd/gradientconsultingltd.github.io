@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 // Sparse ambient particles — warm-toned, mimics a lit portrait environment
 const CONTACT_PARTICLES = [
@@ -11,6 +12,7 @@ const CONTACT_PARTICLES = [
 ];
 
 export default function ContactSection() {
+  const isMobile = useIsMobile();
   return (
     <section id="contact" style={{ position: "relative", minHeight: "80vh", display: "flex", alignItems: "flex-end", overflow: "hidden" }}>
 
@@ -78,7 +80,7 @@ export default function ContactSection() {
       </div>
 
       {/* Bottom content */}
-      <div style={{ position: "relative", zIndex: 3, padding: "0 48px 64px", width: "100%" }}>
+      <div style={{ position: "relative", zIndex: 3, padding: isMobile ? "0 24px 48px" : "0 48px 64px", width: "100%" }}>
 
         {/* Thin separator */}
         <div style={{ height: 1, background: "rgba(255,255,255,0.07)", marginBottom: "2rem", maxWidth: 520 }} />
@@ -96,7 +98,7 @@ export default function ContactSection() {
           Turning talent uncertainty<br />into structure, and structure<br />into growth.
         </h2>
 
-        <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
+        <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "1rem" : "1.5rem" }}>
           <button
             onClick={() => window.location.href = "mailto:hello@gradientconsulting.co.uk"}
             style={{

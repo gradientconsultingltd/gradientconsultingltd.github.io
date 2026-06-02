@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const tabs = [
   { id: "all",     label: "All Questions" },
@@ -39,11 +40,12 @@ const faqs: Record<string, { q: string; a: string }[]> = {
 export default function FAQSection() {
   const [activeTab, setActiveTab] = useState("all");
   const [openIdx, setOpenIdx] = useState<number | null>(0);
+  const isMobile = useIsMobile();
 
   const items = faqs[activeTab] ?? [];
 
   return (
-    <section id="faq" style={{ background: "#FFFFFF", padding: "7rem 0" }}>
+    <section id="faq" style={{ background: "#FFFFFF", padding: isMobile ? "4rem 0" : "7rem 0" }}>
       <div className="container">
 
         {/* Centered header */}

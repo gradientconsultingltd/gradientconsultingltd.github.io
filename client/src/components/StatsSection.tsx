@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const cases = [
   {
@@ -44,8 +45,9 @@ const CARD_PARTICLES = [
 ];
 
 export default function StatsSection() {
+  const isMobile = useIsMobile();
   return (
-    <section id="outcomes" style={{ background: "#FFFFFF", padding: "7rem 0" }}>
+    <section id="outcomes" style={{ background: "#FFFFFF", padding: isMobile ? "4rem 0" : "7rem 0" }}>
       <div className="container">
 
         {/* Header */}
@@ -90,7 +92,7 @@ export default function StatsSection() {
               key={i}
               className={`animate-fade-up delay-${Math.min((i + 1) * 100, 400)}`}
               style={{
-                flex: "0 0 320px", borderRadius: 18, overflow: "hidden",
+                flex: isMobile ? "0 0 260px" : "0 0 320px", borderRadius: 18, overflow: "hidden",
                 position: "relative", background: c.bg,
                 minHeight: 420, display: "flex", flexDirection: "column", justifyContent: "flex-end",
               }}

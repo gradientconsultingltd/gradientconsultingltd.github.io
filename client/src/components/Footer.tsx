@@ -1,4 +1,7 @@
+import { useIsMobile } from "@/hooks/useIsMobile";
+
 export default function Footer() {
+  const isMobile = useIsMobile();
   const go = (href: string) => {
     if (href === "#") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
@@ -10,15 +13,15 @@ export default function Footer() {
       {/* Dot grid texture */}
       <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "24px 24px", pointerEvents: "none" }} />
 
-      <div style={{ position: "relative", zIndex: 1, padding: "56px 48px 40px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 40, marginBottom: 48 }}>
+      <div style={{ position: "relative", zIndex: 1, padding: isMobile ? "40px 24px 32px" : "56px 48px 40px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "1fr 1fr 1fr 1fr", gap: isMobile ? 32 : 40, marginBottom: 48 }}>
 
-          {/* Logo */}
-          <div>
+          {/* Logo — spans 2 cols on mobile */}
+          <div style={{ gridColumn: isMobile ? "1 / -1" : "auto" }}>
             <img
               src="/logo-gradient.png"
               alt="Gradient Consulting"
-              style={{ height: 56, width: "auto", display: "block" }}
+              style={{ height: isMobile ? 40 : 56, width: "auto", display: "block" }}
             />
           </div>
 

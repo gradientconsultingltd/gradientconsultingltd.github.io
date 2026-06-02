@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 // Particle dots for the dark hero card
 const HERO_DOTS = [
@@ -43,8 +44,9 @@ const features = [
 ];
 
 export default function WhySection() {
+  const isMobile = useIsMobile();
   return (
-    <section id="why" style={{ background: "#FFFFFF", padding: "7rem 0" }}>
+    <section id="why" style={{ background: "#FFFFFF", padding: isMobile ? "4rem 0" : "7rem 0" }}>
       <div className="container">
 
         {/* Header */}
@@ -75,8 +77,8 @@ export default function WhySection() {
           </p>
         </div>
 
-        {/* 3×2 grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12 }}>
+        {/* 3×2 grid — 1 col on mobile */}
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: 12 }}>
           {features.map((f, i) => (
             <div
               key={i}

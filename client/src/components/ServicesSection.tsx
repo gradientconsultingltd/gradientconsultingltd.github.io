@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const services = [
   {
@@ -67,9 +68,10 @@ const RINGS_DARK = [
 
 export default function ServicesSection() {
   const [active, setActive] = useState(0);
+  const isMobile = useIsMobile();
 
   return (
-    <section id="services" style={{ background: "#F5F5F3", padding: "120px 0" }}>
+    <section id="services" style={{ background: "#F5F5F3", padding: isMobile ? "64px 0" : "120px 0" }}>
       <div className="container">
 
         {/* Top header row */}
@@ -79,7 +81,7 @@ export default function ServicesSection() {
         </div>
         <div style={{ height: 1, background: "#E4E4E4", marginBottom: "2.5rem" }} />
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "start" }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "2.5rem" : "5rem", alignItems: "start" }}>
 
           {/* LEFT — numbered list */}
           <div>
@@ -130,10 +132,10 @@ export default function ServicesSection() {
           <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem", paddingTop: "0.5rem", alignItems: "center" }}>
 
             {/* Two orbital animations side by side — centred */}
-            <div style={{ alignSelf: "center", display: "flex", gap: 24 }}>
+            <div style={{ alignSelf: "center", display: "flex", gap: isMobile ? 12 : 24, justifyContent: "center" }}>
 
               {/* Left — lavender rings + black swirl */}
-              <div style={{ width: 220, height: 220, position: "relative", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <div style={{ width: isMobile ? 140 : 220, height: isMobile ? 140 : 220, position: "relative", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 {RINGS_LAVENDER.map((ring, i) => (
                   <div key={i} style={{ position: "absolute", inset: 0, animation: `${ring.dir} ${ring.dur} linear infinite` }}>
                     <svg viewBox="0 0 100 100" style={{ width: "100%", height: "100%" }}>
@@ -150,7 +152,7 @@ export default function ServicesSection() {
               </div>
 
               {/* Right — dark rings + lavender swirl */}
-              <div style={{ width: 220, height: 220, position: "relative", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <div style={{ width: isMobile ? 140 : 220, height: isMobile ? 140 : 220, position: "relative", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 {RINGS_DARK.map((ring, i) => (
                   <div key={i} style={{ position: "absolute", inset: 0, animation: `${ring.dir} ${ring.dur} linear infinite` }}>
                     <svg viewBox="0 0 100 100" style={{ width: "100%", height: "100%" }}>
