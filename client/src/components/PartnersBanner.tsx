@@ -1,164 +1,77 @@
-/* ============================================================
-   GRADIENT CONSULTING — Partners / Clients Banner
-   Design: Infinite CSS marquee scroll of partner logos
-   Partners: Outlier, Micro1, Mercor, Turing
-   ============================================================ */
-
-// Logo display strategy:
-// - Outlier: white text on black bg → use as-is, opacity 0.85
-// - Micro1: rendered as styled text logo (white on transparent)
-// - Mercor: light bg logo → use brightness/invert CSS filter to make it dark-bg friendly
-// - Turing: white on black bg → use as-is, opacity 0.85
-
 const partners = [
-  {
-    name: "Outlier",
-    logo: "/manus-storage/logo-outlier-v2_aac2fea1.png",
-    // White text on black — works natively on dark bg
-    filterStyle: "brightness(1) opacity(0.85)",
-    bgStyle: "transparent",
-    isTextLogo: false,
-  },
-  {
-    name: "Mercor",
-    logo: "/manus-storage/logo-mercor_2368d829.png",
-    // Original colours — displayed as-is
-    filterStyle: "brightness(1) opacity(0.92)",
-    bgStyle: "transparent",
-    isTextLogo: false,
-  },
-  {
-    name: "micro1",
-    logo: null,
-    filterStyle: "",
-    bgStyle: "transparent",
-    isTextLogo: true,
-  },
-  {
-    name: "Turing",
-    logo: "/manus-storage/logo-turing-v2_1491987b.svg",
-    // Official white SVG — works natively on dark bg
-    filterStyle: "brightness(1) opacity(0.88)",
-    bgStyle: "transparent",
-    isTextLogo: false,
-  },
+  { name: "Turing",  src: "/logo-turing.png",  transparent: false },
+  { name: "Mercor",  src: "/logo-mercor.png",  transparent: false },
+  { name: "micro1",  src: "/logo-micro1.png",  transparent: true  },
 ];
 
-// Duplicate for seamless loop
-const allPartners = [...partners, ...partners, ...partners];
+const all = [...partners, ...partners, ...partners, ...partners];
 
 export default function PartnersBanner() {
   return (
-    <section
-      className="py-12 relative overflow-hidden"
-      style={{
-        background: "#16161A",
-        borderTop: "1px solid rgba(255,255,255,0.05)",
-        borderBottom: "1px solid rgba(255,255,255,0.05)",
-      }}
-    >
-      {/* Fade edges */}
-      <div
-        className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-        style={{
-          background: "linear-gradient(to right, #16161A 0%, transparent 100%)",
-        }}
-      />
-      <div
-        className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-        style={{
-          background: "linear-gradient(to left, #16161A 0%, transparent 100%)",
-        }}
-      />
+    <section style={{
+      background: "#FFFFFF",
+      borderTop: "1px solid #EEEEEE",
+      borderBottom: "1px solid #EEEEEE",
+      overflow: "hidden",
+      padding: "32px 0",
+    }}>
+      <div style={{ overflow: "hidden", position: "relative" }}>
 
-      {/* Label */}
-      <div className="container mb-8 relative z-20">
-        <div className="flex items-center gap-3">
-          <div
-            className="h-px w-8 flex-shrink-0"
-            style={{ background: "linear-gradient(90deg, #4F8EF7, #9B5CF6)" }}
-          />
-          <span
-            style={{
-              fontFamily: "JetBrains Mono, monospace",
-              fontSize: "0.7rem",
-              color: "#6B6B7A",
-              letterSpacing: "0.18em",
-              textTransform: "uppercase",
-            }}
-          >
-            Recruiting for leading AI training platforms
-          </span>
-        </div>
-      </div>
+        {/* Fade edges */}
+        <div style={{ position: "absolute", inset: "0 auto 0 0", width: 140, background: "linear-gradient(to right, #fff, transparent)", zIndex: 2, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", inset: "0 0 0 auto", width: 140, background: "linear-gradient(to left, #fff, transparent)", zIndex: 2, pointerEvents: "none" }} />
 
-      {/* Marquee track */}
-      <div className="relative overflow-hidden">
-        <div
-          className="flex items-center gap-10"
-          style={{
-            animation: "marquee 32s linear infinite",
-            width: "max-content",
-          }}
-        >
-          {allPartners.map((partner, i) => (
-            <div
-              key={`${partner.name}-${i}`}
-              className="flex items-center justify-center flex-shrink-0"
-              style={{
-                width: "200px",
-                height: "68px",
-                padding: "12px 24px",
-                borderRadius: "10px",
-                background: "rgba(255,255,255,0.03)",
-                border: "1px solid rgba(255,255,255,0.07)",
-                transition: "border-color 0.3s ease",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor =
-                  "rgba(79,142,247,0.3)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor =
-                  "rgba(255,255,255,0.07)";
-              }}
-            >
-              {partner.isTextLogo ? (
-                /* Micro1 — styled text logo */
-                <span
-                  style={{
-                    fontFamily: "system-ui, -apple-system, sans-serif",
-                    fontWeight: 700,
-                    fontSize: "1.4rem",
-                    color: "rgba(255,255,255,0.82)",
-                    letterSpacing: "-0.02em",
-                    userSelect: "none",
-                  }}
-                >
-                  micro<span style={{ color: "rgba(255,255,255,0.82)" }}>1</span>
-                  <span style={{ color: "#4F8EF7", fontSize: "1.6rem", lineHeight: 0 }}>.</span>
-                </span>
-              ) : (
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          width: "max-content",
+          animation: "ticker 20s linear infinite",
+        }}>
+          {all.map((p, i) => (
+            <div key={i} style={{
+              display: "flex",
+              alignItems: "center",
+              padding: "0 56px",
+              gap: 56,
+              flexShrink: 0,
+            }}>
+              <div style={{
+                width: 160,
+                height: 52,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0,
+              }}>
                 <img
-                  src={partner.logo!}
-                  alt={partner.name}
+                  src={p.src}
+                  alt={p.name}
                   style={{
                     maxWidth: "100%",
-                    maxHeight: "44px",
+                    maxHeight: "100%",
+                    width: "auto",
+                    height: "auto",
                     objectFit: "contain",
-                    filter: partner.filterStyle,
+                    display: "block",
+                    filter: p.transparent
+                      ? "grayscale(1) brightness(0.55)"
+                      : "grayscale(1)",
                   }}
                 />
-              )}
+              </div>
+              <span style={{
+                width: 4, height: 4, borderRadius: "50%",
+                background: "#D8CCEE", flexShrink: 0, display: "block",
+              }} />
             </div>
           ))}
         </div>
       </div>
 
       <style>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-${100 / 3}%); }
+        @keyframes ticker {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-${(100 / 4).toFixed(6)}%); }
         }
       `}</style>
     </section>

@@ -1,226 +1,204 @@
-/* ============================================================
-   GRADIENT CONSULTING — Services Section
-   Design: Bento-grid layout, numbered cards, gradient borders on hover
-   Updated: AI training jobs emphasis, RLHF, domain knowledge
-   ============================================================ */
-
-import { Users, Brain, Search, Zap, BookOpen, FlaskConical } from "lucide-react";
+import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 
 const services = [
   {
-    number: "01",
-    icon: Users,
-    title: "Tech Recruitment",
-    description:
-      "Precision placement of software engineers, architects, data scientists, and product leaders across the UK and Europe. We don't just fill roles — we build teams.",
-    tags: ["Engineering", "Product", "Data"],
-    wide: true,
+    num: 1, title: "Tech Recruitment (Perm & Contract)",
+    desc: "A clear, commercially grounded view of where AI talent creates meaningful advantage. We surface the highest-value engineers, assess culture fit with rigour, and deliver a shortlist that converts.",
   },
   {
-    number: "02",
-    icon: Brain,
-    title: "RLHF & AI Training Roles",
-    description:
-      "Recruiting the human experts who train the world's most capable AI models — RLHF specialists, preference data annotators, and AI evaluators.",
-    tags: ["RLHF", "Annotation", "Evaluation"],
-    wide: false,
+    num: 2, title: "RLHF & AI Training Talent",
+    desc: "We recruit the human experts who train the world's most capable AI models — preference data annotators, evaluators, and alignment specialists with verified domain knowledge.",
   },
   {
-    number: "03",
-    icon: BookOpen,
-    title: "Domain Expert Placement",
-    description:
-      "Connecting AI platforms with subject-matter experts across medicine, law, finance, STEM, and the humanities — the domain knowledge that makes AI trustworthy.",
-    tags: ["Medicine", "Law", "Finance", "STEM"],
-    wide: false,
+    num: 3, title: "Domain Expert Placement",
+    desc: "Clinicians, lawyers, financial analysts, and scientists placed into AI training workflows. The ground-truth knowledge that makes large language models reliable and trustworthy.",
   },
   {
-    number: "04",
-    icon: Search,
-    title: "Executive Search",
-    description:
-      "Retained search for CTO, VP Engineering, Head of AI, and other senior technology leadership roles.",
-    tags: ["C-Suite", "VP", "Director"],
-    wide: false,
+    num: 4, title: "Executive & Leadership Search",
+    desc: "Retained search for CTO, VP Engineering, Head of AI, and technology leadership roles. We find the people who define your AI strategy, not just execute it.",
   },
   {
-    number: "05",
-    icon: FlaskConical,
-    title: "Red Teaming & Safety",
-    description:
-      "Sourcing adversarial AI testers and safety researchers who probe models for failure modes, biases, and vulnerabilities before deployment.",
-    tags: ["Red Teaming", "Safety", "Alignment"],
-    wide: false,
+    num: 5, title: "Contract & Interim Hiring",
+    desc: "Flexible specialist talent deployed fast — from a single ML engineer to a full RLHF annotation team. Rapid onboarding, minimal overhead, maximum output.",
   },
   {
-    number: "06",
-    icon: Zap,
-    title: "Contract & Interim",
-    description:
-      "Rapid deployment of specialist contractors for project-critical roles. Flexible engagements from days to years — including AI training sprints.",
-    tags: ["Contract", "Interim", "Flexible"],
-    wide: true,
+    num: 6, title: "Red Teaming & AI Safety",
+    desc: "Adversarial AI safety researchers and red teamers who evaluate model robustness, probe failure modes, and stress-test outputs before deployment.",
+  },
+  {
+    num: 7, title: "AI Tooling Assessment",
+    desc: "We identify and place specialists who evaluate your AI toolchain — from vector databases to inference infrastructure — ensuring your technology stack matches your ambition.",
   },
 ];
 
+function makeRing(count: number, radius: number) {
+  return Array.from({ length: count }, (_, i) => {
+    const a = (i / count) * Math.PI * 2;
+    return { x: 50 + radius * Math.cos(a), y: 50 + radius * Math.sin(a) };
+  });
+}
+
+// 9 rings — lavender dots (for version with black centre)
+const RINGS_LAVENDER = [
+  { dots: makeRing(12, 8),    size: 3.5, color: "#7A65AA", dur: "7s",  dir: "gc-orbit"         },
+  { dots: makeRing(16, 14),   size: 3.2, color: "#8B76BB", dur: "11s", dir: "gc-orbit-reverse"  },
+  { dots: makeRing(20, 20),   size: 2.9, color: "#9880C4", dur: "15s", dir: "gc-orbit"          },
+  { dots: makeRing(24, 26),   size: 2.6, color: "#A994D4", dur: "19s", dir: "gc-orbit-reverse"  },
+  { dots: makeRing(28, 32),   size: 2.3, color: "#B8A9D4", dur: "23s", dir: "gc-orbit"          },
+  { dots: makeRing(30, 37),   size: 2.0, color: "#C4B2E8", dur: "27s", dir: "gc-orbit-reverse"  },
+  { dots: makeRing(32, 41),   size: 1.8, color: "#CBBFEC", dur: "31s", dir: "gc-orbit"          },
+  { dots: makeRing(34, 44.5), size: 1.6, color: "#D4CAEE", dur: "35s", dir: "gc-orbit-reverse"  },
+  { dots: makeRing(36, 47.5), size: 1.4, color: "#DDD6F2", dur: "39s", dir: "gc-orbit"          },
+];
+
+// 9 rings — dark/black dots (for version with lavender centre)
+const RINGS_DARK = [
+  { dots: makeRing(12, 8),    size: 3.5, color: "#0A0A0A", dur: "7s",  dir: "gc-orbit-reverse"  },
+  { dots: makeRing(16, 14),   size: 3.2, color: "#1A1A1A", dur: "11s", dir: "gc-orbit"           },
+  { dots: makeRing(20, 20),   size: 2.9, color: "#252525", dur: "15s", dir: "gc-orbit-reverse"   },
+  { dots: makeRing(24, 26),   size: 2.6, color: "#2E2E2E", dur: "19s", dir: "gc-orbit"           },
+  { dots: makeRing(28, 32),   size: 2.3, color: "#383838", dur: "23s", dir: "gc-orbit-reverse"   },
+  { dots: makeRing(30, 37),   size: 2.0, color: "#444444", dur: "27s", dir: "gc-orbit"           },
+  { dots: makeRing(32, 41),   size: 1.8, color: "#555555", dur: "31s", dir: "gc-orbit-reverse"   },
+  { dots: makeRing(34, 44.5), size: 1.6, color: "#666666", dur: "35s", dir: "gc-orbit"           },
+  { dots: makeRing(36, 47.5), size: 1.4, color: "#777777", dur: "39s", dir: "gc-orbit-reverse"   },
+];
+
 export default function ServicesSection() {
+  const [active, setActive] = useState(0);
+
   return (
-    <section id="services" className="py-28" style={{ background: "#0E0E10" }}>
+    <section id="services" style={{ background: "#F5F5F3", padding: "120px 0" }}>
       <div className="container">
-        {/* Section header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-16">
-          <div className="animate-fade-up">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div
-                className="h-px w-8"
-                style={{ background: "linear-gradient(90deg, #4F8EF7, #9B5CF6)" }}
-              />
-              <span
-                style={{
-                  fontFamily: "JetBrains Mono, monospace",
-                  fontSize: "0.7rem",
-                  color: "#4F8EF7",
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                }}
-              >
-                What We Do
-              </span>
-            </div>
-            <h2
-              className="font-display leading-tight"
-              style={{
-                fontFamily: "Syne, sans-serif",
-                fontWeight: 800,
-                fontSize: "clamp(2rem, 4vw, 3.5rem)",
-                color: "#F0EEE8",
-              }}
-            >
-              Tech recruitment.
-              <br />
-              <span
-                style={{
-                  background: "linear-gradient(135deg, #4F8EF7 0%, #9B5CF6 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                AI training talent.
-              </span>
-            </h2>
-          </div>
-          <p
-            className="animate-fade-up delay-200"
-            style={{
-              fontFamily: "Outfit, sans-serif",
-              color: "#6B6B7A",
-              lineHeight: 1.7,
-              maxWidth: "340px",
-            }}
-          >
-            We bridge the gap between exceptional human talent — engineers, domain
-            experts, and RLHF specialists — and the organisations building the
-            future of AI.
-          </p>
+
+        {/* Top header row */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", marginBottom: "2rem" }}>
+          <p style={{ fontFamily: "Zalando Sans, sans-serif", fontSize: "0.88rem", color: "#0A0A0A", letterSpacing: "0.06em" }}>Our Services</p>
+          <p style={{ fontFamily: "Zalando Sans, sans-serif", fontSize: "0.88rem", color: "#0A0A0A", letterSpacing: "0.06em" }}>How we help</p>
         </div>
+        <div style={{ height: 1, background: "#E4E4E4", marginBottom: "2.5rem" }} />
 
-        {/* Bento grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {services.map((service, i) => {
-            const Icon = service.icon;
-            return (
-              <div
-                key={service.number}
-                className={`animate-fade-up card-surface rounded-xl p-7 flex flex-col gap-5 relative overflow-hidden group ${
-                  service.wide ? "lg:col-span-2" : ""
-                } delay-${Math.min((i + 1) * 100, 600)}`}
-              >
-                {/* Background number */}
-                <span
-                  className="absolute -top-2 -right-2 font-display font-800 select-none pointer-events-none"
-                  style={{
-                    fontFamily: "Syne, sans-serif",
-                    fontWeight: 800,
-                    fontSize: "5rem",
-                    lineHeight: 1,
-                    background:
-                      "linear-gradient(135deg, rgba(79,142,247,0.07) 0%, rgba(155,92,246,0.07) 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  {service.number}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "start" }}>
+
+          {/* LEFT — numbered list */}
+          <div>
+            {services.map((s, i) => (
+              <button key={s.num}
+                onMouseEnter={() => setActive(i)}
+                style={{
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  width: "100%", padding: "20px 0",
+                  background: "none",
+                  borderLeft: "none", borderRight: "none", borderBottom: "none",
+                  borderTop: i === 0 ? "none" : "1px solid #E8E8E8",
+                  textAlign: "left", cursor: "pointer",
+                }}>
+                <span style={{
+                  fontFamily: "Zalando Sans, sans-serif",
+                  fontWeight: active === i ? 600 : 400,
+                  fontSize: "1.1rem",
+                  color: active === i ? "#0A0A0A" : "#AAAAAA",
+                  transition: "color 0.2s, font-weight 0.2s",
+                }}>
+                  {s.num}. {s.title}
                 </span>
+                {active === i && (
+                  <span style={{ color: "#0A0A0A", flexShrink: 0, marginLeft: 8 }}>→</span>
+                )}
+              </button>
+            ))}
 
-                {/* Icon */}
-                <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, rgba(79,142,247,0.15) 0%, rgba(155,92,246,0.15) 100%)",
-                    border: "1px solid rgba(79,142,247,0.2)",
-                  }}
-                >
-                  <Icon size={18} style={{ color: "#4F8EF7" }} />
-                </div>
+            <div style={{ marginTop: "2rem", paddingTop: "1.5rem", borderTop: "1px solid #E8E8E8", display: "flex", gap: "1.25rem", alignItems: "center" }}>
+              <button onClick={() => document.querySelector("#process")?.scrollIntoView({ behavior: "smooth" })}
+                style={{ fontFamily: "Zalando Sans, sans-serif", fontWeight: 400, fontSize: "0.92rem", color: "#999", background: "none", border: "none", padding: 0, cursor: "pointer", transition: "color 0.15s" }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#333"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "#999"; }}>
+                See how we work
+              </button>
+              <span style={{ color: "#DDD" }}>|</span>
+              <button onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+                style={{ fontFamily: "Zalando Sans, sans-serif", fontWeight: 400, fontSize: "0.92rem", color: "#999", background: "none", border: "none", padding: 0, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 4, transition: "color 0.15s" }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = "#333"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = "#999"; }}>
+                Start a Search <ArrowRight size={12} />
+              </button>
+            </div>
+          </div>
 
-                {/* Content */}
-                <div className="flex flex-col gap-3 flex-1">
-                  <h3
-                    style={{
-                      fontFamily: "Syne, sans-serif",
-                      fontWeight: 700,
-                      fontSize: "1.2rem",
-                      color: "#F0EEE8",
-                    }}
-                  >
-                    {service.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontFamily: "Outfit, sans-serif",
-                      color: "#8A8A9A",
-                      lineHeight: 1.65,
-                      fontSize: "0.9rem",
-                    }}
-                  >
-                    {service.description}
-                  </p>
-                </div>
+          {/* RIGHT — animated logo + description */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem", paddingTop: "0.5rem", alignItems: "center" }}>
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {service.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-1 rounded-full text-xs"
-                      style={{
-                        fontFamily: "JetBrains Mono, monospace",
-                        background: "rgba(79,142,247,0.08)",
-                        border: "1px solid rgba(79,142,247,0.18)",
-                        color: "#4F8EF7",
-                        fontSize: "0.7rem",
-                      }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+            {/* Two orbital animations side by side — centred */}
+            <div style={{ alignSelf: "center", display: "flex", gap: 24 }}>
 
-                {/* Hover gradient line at bottom */}
-                <div
-                  className="absolute bottom-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    background: "linear-gradient(90deg, #4F8EF7, #9B5CF6)",
-                  }}
+              {/* Left — lavender rings + black swirl */}
+              <div style={{ width: 220, height: 220, position: "relative", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                {RINGS_LAVENDER.map((ring, i) => (
+                  <div key={i} style={{ position: "absolute", inset: 0, animation: `${ring.dir} ${ring.dur} linear infinite` }}>
+                    <svg viewBox="0 0 100 100" style={{ width: "100%", height: "100%" }}>
+                      {ring.dots.map((d, j) => (
+                        <circle key={j} cx={d.x} cy={d.y} r={ring.size} fill={ring.color} opacity={0.75 - i * 0.05} />
+                      ))}
+                    </svg>
+                  </div>
+                ))}
+                <img key={`swirl-a-${active}`} src="/icon-swirl.png" alt=""
+                  style={{ width: 52, height: 52, position: "relative", zIndex: 2, filter: "brightness(0)",
+                    animation: "gc-swirl-burst 0.7s cubic-bezier(0.23,1,0.32,1) both, gc-slow-spin 12s linear 0.7s infinite" }}
                 />
               </div>
-            );
-          })}
+
+              {/* Right — dark rings + lavender swirl */}
+              <div style={{ width: 220, height: 220, position: "relative", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                {RINGS_DARK.map((ring, i) => (
+                  <div key={i} style={{ position: "absolute", inset: 0, animation: `${ring.dir} ${ring.dur} linear infinite` }}>
+                    <svg viewBox="0 0 100 100" style={{ width: "100%", height: "100%" }}>
+                      {ring.dots.map((d, j) => (
+                        <circle key={j} cx={d.x} cy={d.y} r={ring.size} fill={ring.color} opacity={0.75 - i * 0.05} />
+                      ))}
+                    </svg>
+                  </div>
+                ))}
+                <img key={`swirl-b-${active}`} src="/icon-swirl.png" alt=""
+                  style={{ width: 52, height: 52, position: "relative", zIndex: 2,
+                    animation: "gc-swirl-burst 0.7s cubic-bezier(0.23,1,0.32,1) both, gc-slow-spin 12s linear 0.7s infinite" }}
+                />
+              </div>
+
+            </div>
+
+            {/* Description — fades + slides in on hover change */}
+            <p
+              key={`desc-${active}`}
+              style={{
+                fontFamily: "Zalando Sans, sans-serif", fontSize: "1.05rem",
+                color: "#666", lineHeight: 1.75,
+                animation: "gc-service-in 0.45s cubic-bezier(0.23,1,0.32,1) both",
+              }}
+            >
+              {services[active].desc}
+            </p>
+          </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes gc-swirl-burst {
+          0%   { transform: rotate(-30deg) scale(0.8); opacity: 0.4; }
+          55%  { transform: rotate(220deg) scale(1.1); opacity: 1; }
+          100% { transform: rotate(360deg) scale(1); opacity: 1; }
+        }
+        @keyframes gc-slow-spin {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+        @keyframes gc-service-in {
+          from { opacity: 0; transform: translateY(14px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
+
     </section>
   );
 }

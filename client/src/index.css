@@ -4,9 +4,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ============================================================
-   GRADIENT CONSULTING — Terminal Modernism Design System
-   Philosophy: Dark charcoal base, electric blue→violet gradient
-   accent, Syne display + Outfit body typography
+   GRADIENT CONSULTING — Design System
+   Palette: White · Near-black · Lavender accent
+   Typography: Zalando Sans (matches hybridmind.io exactly)
    ============================================================ */
 
 @theme inline {
@@ -33,337 +33,292 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Brand gradient colours */
-  --color-gc-blue: #4F8EF7;
-  --color-gc-violet: #9B5CF6;
-  --color-gc-dark: #0E0E10;
-  --color-gc-surface: #16161A;
-  --color-gc-surface2: #1C1C22;
-  --color-gc-muted-text: #6B6B7A;
-  --color-gc-warm-white: #F0EEE8;
+  /* Brand tokens */
+  --color-gc-lavender:       #B8A9D4;
+  --color-gc-lavender-dark:  #8B7AB8;
+  --color-gc-lavender-light: #DDD6EE;
+  --color-gc-midnight:       #0F0F0F;
+  --color-gc-charcoal:       #2A2A2A;
+  --color-gc-body:           #6B6B6B;
+  --color-gc-muted:          #ABABAB;
+  --color-gc-surface:        #F5F4F2;
+  --color-gc-border:         #E4E4E4;
 }
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(0.075 0.005 270);
-  --foreground: oklch(0.94 0.005 65);
-  --card: oklch(0.1 0.006 270);
-  --card-foreground: oklch(0.94 0.005 65);
-  --popover: oklch(0.1 0.006 270);
-  --popover-foreground: oklch(0.94 0.005 65);
-  --primary: oklch(0.62 0.18 260);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.06 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.06 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.06 0 0);
+  --primary: oklch(0.06 0 0);
   --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.14 0.006 270);
-  --secondary-foreground: oklch(0.85 0.005 65);
-  --muted: oklch(0.16 0.006 270);
-  --muted-foreground: oklch(0.52 0.012 270);
-  --accent: oklch(0.16 0.006 270);
-  --accent-foreground: oklch(0.94 0.005 65);
+  --secondary: oklch(0.96 0 0);
+  --secondary-foreground: oklch(0.06 0 0);
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  --accent: oklch(0.96 0 0);
+  --accent-foreground: oklch(0.06 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 10%);
-  --ring: oklch(0.62 0.18 260);
-  --chart-1: oklch(0.62 0.18 260);
-  --chart-2: oklch(0.58 0.22 290);
-  --chart-3: oklch(0.55 0.2 275);
-  --chart-4: oklch(0.65 0.15 250);
-  --chart-5: oklch(0.7 0.12 240);
-  --sidebar: oklch(0.1 0.006 270);
-  --sidebar-foreground: oklch(0.94 0.005 65);
-  --sidebar-primary: oklch(0.62 0.18 260);
-  --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.14 0.006 270);
-  --sidebar-accent-foreground: oklch(0.94 0.005 65);
-  --sidebar-border: oklch(1 0 0 / 8%);
-  --sidebar-ring: oklch(0.62 0.18 260);
+  --border: oklch(0.91 0 0);
+  --input: oklch(0.91 0 0);
+  --ring: oklch(0.06 0 0);
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
+  * { @apply border-border outline-ring/50; }
 
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Outfit', sans-serif;
-    background-color: #0E0E10;
-    color: #F0EEE8;
+    font-family: 'Zalando Sans', sans-serif;
+    background-color: #FFFFFF;
+    color: #0F0F0F;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
+    font-family: 'Zalando Sans', sans-serif;
+    font-weight: 700;
   }
 
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
   [type="button"]:not(:disabled),
   [type="submit"]:not(:disabled),
-  a[href] {
-    @apply cursor-pointer;
-  }
+  a[href] { @apply cursor-pointer; }
 }
 
 /* ============================================================
-   BRAND UTILITIES
+   UTILITIES
    ============================================================ */
 
-.font-display {
-  font-family: 'Syne', sans-serif;
+.font-display   { font-family: 'Zalando Sans', sans-serif; }
+.font-body      { font-family: 'Zalando Sans', sans-serif; }
+.font-mono-brand{ font-family: 'Zalando Sans', monospace; }
+
+/* Section eyebrow label */
+.label-sm {
+  font-family: 'Zalando Sans', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ABABAB;
 }
 
-.font-body {
-  font-family: 'Outfit', sans-serif;
-}
-
-.font-mono-brand {
-  font-family: 'JetBrains Mono', monospace;
-}
-
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, #4F8EF7 0%, #9B5CF6 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Gradient border */
-.gradient-border {
-  position: relative;
-}
-
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, #4F8EF7, #9B5CF6);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
-/* Gradient underline on hover */
-.gradient-underline {
-  position: relative;
-  display: inline-block;
-}
-
-.gradient-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #4F8EF7, #9B5CF6);
-  transition: width 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.gradient-underline:hover::after {
-  width: 100%;
-}
-
-/* Dot grid texture */
-.dot-grid {
-  background-image: radial-gradient(circle, rgba(79, 142, 247, 0.12) 1px, transparent 1px);
-  background-size: 28px 28px;
-}
-
-/* Glow effect */
-.glow-blue {
-  box-shadow: 0 0 40px rgba(79, 142, 247, 0.15), 0 0 80px rgba(79, 142, 247, 0.05);
-}
-
-.glow-violet {
-  box-shadow: 0 0 40px rgba(155, 92, 246, 0.15), 0 0 80px rgba(155, 92, 246, 0.05);
-}
-
-/* CTA button */
-.btn-gradient {
-  background: linear-gradient(135deg, #4F8EF7 0%, #9B5CF6 100%);
-  color: white;
-  font-family: 'Outfit', sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-gradient::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, #6BA3F9 0%, #AE7AF8 100%);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.btn-gradient:hover::before {
-  opacity: 1;
-}
-
-.btn-gradient:active {
-  transform: scale(0.97);
-}
-
-.btn-gradient span {
-  position: relative;
-  z-index: 1;
-}
-
-/* Ghost button */
-.btn-ghost-light {
-  border: 1px solid rgba(255,255,255,0.15);
-  color: #F0EEE8;
-  font-family: 'Outfit', sans-serif;
-  font-weight: 500;
-  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
-  background: transparent;
-}
-
-.btn-ghost-light:hover {
-  border-color: rgba(79, 142, 247, 0.5);
-  background: rgba(79, 142, 247, 0.06);
-  color: #4F8EF7;
-}
-
-.btn-ghost-light:active {
-  transform: scale(0.97);
-}
-
-/* Section number decorators */
-.section-number {
-  font-family: 'Syne', sans-serif;
+/* Display headline */
+.display-xl {
+  font-family: 'Zalando Sans', sans-serif;
   font-weight: 800;
-  font-size: clamp(6rem, 15vw, 14rem);
-  line-height: 1;
-  background: linear-gradient(135deg, rgba(79, 142, 247, 0.06) 0%, rgba(155, 92, 246, 0.06) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  pointer-events: none;
-  user-select: none;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  color: #0F0F0F;
+}
+
+.display-lg {
+  font-family: 'Zalando Sans', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  color: #0F0F0F;
+}
+
+.display-md {
+  font-family: 'Zalando Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #0F0F0F;
+}
+
+/* Body text */
+.body-lg {
+  font-family: 'Zalando Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #6B6B6B;
+}
+.body-sm {
+  font-family: 'Zalando Sans', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: #6B6B6B;
+}
+
+/* Buttons */
+.btn {
+  font-family: 'Zalando Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+  border-radius: 8px;
+  padding: 12px 24px;
+  transition: all 0.18s cubic-bezier(0.23, 1, 0.32, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-dark {
+  background: #0F0F0F;
+  color: #FFFFFF;
+  border: 1.5px solid #0F0F0F;
+}
+.btn-dark:hover { background: #2A2A2A; border-color: #2A2A2A; }
+.btn-dark:active { transform: scale(0.97); }
+
+.btn-outline-dark {
+  background: transparent;
+  color: #0F0F0F;
+  border: 1.5px solid #E4E4E4;
+}
+.btn-outline-dark:hover { border-color: #0F0F0F; }
+.btn-outline-dark:active { transform: scale(0.97); }
+
+.btn-outline-light {
+  background: transparent;
+  color: #FFFFFF;
+  border: 1.5px solid rgba(255,255,255,0.3);
+}
+.btn-outline-light:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.06); }
+
+/* Card */
+.gc-card {
+  background: #FFFFFF;
+  border: 1px solid #E4E4E4;
+  border-radius: 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.gc-card-hover:hover {
+  border-color: #C8C8C8;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+.gc-card-dark {
+  background: #0F0F0F;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+}
+
+/* Nav */
+.nav-scrolled {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid #E4E4E4;
 }
 
 /* Scroll animations */
 .animate-fade-up {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1), transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
-
-.animate-fade-up.in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
+.animate-fade-up.in-view { opacity: 1; transform: translateY(0); }
 
 .animate-scale-in {
   opacity: 0;
   transform: scale(0.96);
-  transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1), transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: opacity 0.55s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
 }
+.animate-scale-in.in-view { opacity: 1; transform: scale(1); }
 
-.animate-scale-in.in-view {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* Stagger delays */
 .delay-100 { transition-delay: 100ms; }
 .delay-200 { transition-delay: 200ms; }
 .delay-300 { transition-delay: 300ms; }
 .delay-400 { transition-delay: 400ms; }
 .delay-500 { transition-delay: 500ms; }
-.delay-600 { transition-delay: 600ms; }
-
-/* Nav blur */
-.nav-blur {
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  background: rgba(14, 14, 16, 0.85);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-
-/* Card surface */
-.card-surface {
-  background: #16161A;
-  border: 1px solid rgba(255,255,255,0.07);
-  transition: border-color 0.3s ease, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.card-surface:hover {
-  border-color: rgba(79, 142, 247, 0.3);
-  transform: translateY(-4px);
-}
-
-/* Stats ticker */
-.stats-ticker {
-  background: #16161A;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
 
 @layer components {
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
-
-  .flex {
-    min-height: 0;
-    min-width: 0;
-  }
-
   @media (min-width: 640px) {
-    .container {
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
+    .container { padding-left: 2.5rem; padding-right: 2.5rem; }
   }
-
   @media (min-width: 1024px) {
-    .container {
-      padding-left: 3rem;
-      padding-right: 3rem;
-      max-width: 1320px;
-    }
+    .container { padding-left: 4rem; padding-right: 4rem; max-width: 1360px; }
   }
 }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .animate-fade-up,
-  .animate-scale-in {
-    opacity: 1;
-    transform: none;
-    transition: none;
+/* ============================================================
+   HERO PARTICLE FLOAT ANIMATIONS
+   6 organic drift paths — assigned round-robin to particles
+   ============================================================ */
+@keyframes gc-p0 {
+  0%,100% { transform: translate(0px,   0px); }
+  30%     { transform: translate(14px, -22px); }
+  60%     { transform: translate(-8px,  -32px); }
+  80%     { transform: translate(10px,  -14px); }
+}
+@keyframes gc-p1 {
+  0%,100% { transform: translate(0px,   0px); }
+  25%     { transform: translate(-16px, -12px); }
+  55%     { transform: translate(12px,  -26px); }
+  80%     { transform: translate(-10px, -18px); }
+}
+@keyframes gc-p2 {
+  0%,100% { transform: translate(0px,   0px); }
+  20%     { transform: translate(8px,  -28px); }
+  50%     { transform: translate(-12px, -16px); }
+  75%     { transform: translate(18px,  -22px); }
+}
+@keyframes gc-p3 {
+  0%,100% { transform: translate(0px,   0px); }
+  35%     { transform: translate(-14px, -24px); }
+  60%     { transform: translate(20px,  -10px); }
+  85%     { transform: translate(-6px,  -30px); }
+}
+@keyframes gc-p4 {
+  0%,100% { transform: translate(0px,   0px); }
+  40%     { transform: translate(22px,  -14px); }
+  65%     { transform: translate(-10px, -26px); }
+  85%     { transform: translate(8px,   -20px); }
+}
+@keyframes gc-p5 {
+  0%,100% { transform: translate(0px,   0px); }
+  30%     { transform: translate(-20px, -18px); }
+  55%     { transform: translate(12px,  -30px); }
+  80%     { transform: translate(-8px,  -12px); }
+}
+
+/* Services section — description reveal on hover */
+@keyframes gc-service-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* AI Clarity card — orbiting dot ring */
+@keyframes gc-orbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes gc-orbit-reverse {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up, .animate-scale-in { opacity: 1; transform: none; transition: none; }
+  [class*="gc-p"], [class*="gc-orbit"] { animation: none !important; }
+  .gc-ticker-track { animation: none; }
 }

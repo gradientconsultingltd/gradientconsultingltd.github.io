@@ -1,156 +1,42 @@
-/* ============================================================
-   GRADIENT CONSULTING — Testimonials Section
-   Design: Dark surface, card grid, gradient quote marks
-   ============================================================ */
-
 const testimonials = [
   {
-    quote:
-      "Gradient Consulting found us a Principal ML Engineer in under two weeks. The calibre of candidates was exceptional — they clearly understood what we needed technically and culturally.",
-    author: "Sarah Chen",
-    role: "CTO",
-    company: "FinTech Scale-up, London",
-    initial: "S",
+    quote: "Gradient found us a Principal ML Engineer in under two weeks. The calibre was exceptional — they understood what we needed technically and culturally. Two years in, he's now leading the team.",
+    author: "Sarah Chen", role: "CTO", company: "FinTech Scale-up, London", initial: "S",
   },
   {
-    quote:
-      "The agentic AI system they built for our operations team reduced manual processing time by 70%. Their team genuinely understood our domain and delivered beyond expectations.",
-    author: "Marcus Webb",
-    role: "VP Operations",
-    company: "Enterprise SaaS, Manchester",
-    initial: "M",
+    quote: "We needed RLHF specialists with genuine medical knowledge, not just annotators. Gradient understood the distinction immediately and placed a team that made a measurable difference to our model quality.",
+    author: "James Okafor", role: "Head of AI", company: "HealthTech Platform, Manchester", initial: "J",
   },
   {
-    quote:
-      "We've used other tech recruiters before, but Gradient is different. They're consultants first — they challenged our thinking on the role spec and we ended up hiring someone even better.",
-    author: "Priya Nair",
-    role: "Head of Engineering",
-    company: "HealthTech Startup, London",
-    initial: "P",
+    quote: "Unlike every other recruiter we've worked with, Gradient challenged our brief. They pushed back on the role spec and we ended up hiring someone better suited than the candidate we'd originally imagined.",
+    author: "Priya Nair", role: "VP Engineering", company: "Enterprise SaaS, London", initial: "P",
   },
 ];
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-28" style={{ background: "#0E0E10" }}>
+    <section style={{ background: "#F5F4F2", padding: "7rem 0" }}>
       <div className="container">
-        {/* Header */}
         <div className="animate-fade-up mb-14">
-          <div className="flex items-center gap-2.5 mb-5">
-            <div
-              className="h-px w-8"
-              style={{ background: "linear-gradient(90deg, #4F8EF7, #9B5CF6)" }}
-            />
-            <span
-              className="font-mono-brand text-xs tracking-widest uppercase"
-              style={{
-                fontFamily: "JetBrains Mono, monospace",
-                color: "#4F8EF7",
-                letterSpacing: "0.18em",
-              }}
-            >
-              Client Perspectives
-            </span>
-          </div>
-          <h2
-            className="font-display leading-tight"
-            style={{
-              fontFamily: "Syne, sans-serif",
-              fontWeight: 800,
-              fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
-              color: "#F0EEE8",
-            }}
-          >
-            Trusted by teams
-            <br />
-            <span
-              style={{
-                background: "linear-gradient(135deg, #4F8EF7 0%, #9B5CF6 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              building the future.
-            </span>
+          <p className="label-sm mb-4">Client Perspectives</p>
+          <h2 style={{ fontFamily: "Zalando Sans, sans-serif", fontWeight: 700, fontSize: "clamp(2rem, 3.8vw, 3.2rem)", lineHeight: 1.08, letterSpacing: "-0.01em", color: "#0F0F0F", maxWidth: 480 }}>
+            Trusted by teams building the future.
           </h2>
         </div>
 
-        {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {testimonials.map((t, i) => (
-            <div
-              key={t.author}
-              className={`animate-fade-up card-surface rounded-xl p-7 flex flex-col gap-6 delay-${(i + 1) * 100}`}
-            >
-              {/* Quote mark */}
-              <div
-                style={{
-                  fontFamily: "Syne, sans-serif",
-                  fontWeight: 800,
-                  fontSize: "4rem",
-                  lineHeight: 0.8,
-                  background: "linear-gradient(135deg, #4F8EF7 0%, #9B5CF6 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  userSelect: "none",
-                }}
-              >
-                "
-              </div>
-
-              <p
-                style={{
-                  fontFamily: "Outfit, sans-serif",
-                  color: "#A0A0B0",
-                  lineHeight: 1.7,
-                  fontSize: "0.9rem",
-                  flex: 1,
-                }}
-              >
-                {t.quote}
-              </p>
-
-              {/* Author */}
-              <div className="flex items-center gap-3">
-                <div
-                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{
-                    background: "linear-gradient(135deg, #4F8EF7 0%, #9B5CF6 100%)",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontFamily: "Syne, sans-serif",
-                      fontWeight: 800,
-                      color: "white",
-                      fontSize: "0.9rem",
-                    }}
-                  >
-                    {t.initial}
-                  </span>
+            <div key={t.author} className={`animate-fade-up delay-${(i + 1) * 100} flex flex-col gap-6 p-7 rounded-2xl`}
+              style={{ background: "#FFFFFF", border: "1px solid #E4E4E4" }}>
+              <span style={{ fontFamily: "Georgia, serif", fontSize: "3rem", lineHeight: 0.8, color: "#B8A9D4", opacity: 0.5, userSelect: "none" }}>"</span>
+              <p style={{ fontFamily: "Zalando Sans, sans-serif", fontSize: "0.9rem", color: "#4A4A4A", lineHeight: 1.7, flex: 1 }}>{t.quote}</p>
+              <div className="flex items-center gap-3" style={{ borderTop: "1px solid #E4E4E4", paddingTop: "1.25rem" }}>
+                <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: "#DDD6EE" }}>
+                  <span style={{ fontFamily: "Zalando Sans, sans-serif", fontWeight: 700, color: "#8B7AB8", fontSize: "0.85rem" }}>{t.initial}</span>
                 </div>
                 <div>
-                  <p
-                    style={{
-                      fontFamily: "Outfit, sans-serif",
-                      fontWeight: 600,
-                      color: "#F0EEE8",
-                      fontSize: "0.875rem",
-                    }}
-                  >
-                    {t.author}
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "Outfit, sans-serif",
-                      color: "#6B6B7A",
-                      fontSize: "0.75rem",
-                    }}
-                  >
-                    {t.role} · {t.company}
-                  </p>
+                  <p style={{ fontFamily: "Zalando Sans, sans-serif", fontWeight: 600, color: "#0F0F0F", fontSize: "0.875rem" }}>{t.author}</p>
+                  <p style={{ fontFamily: "Zalando Sans, sans-serif", color: "#ABABAB", fontSize: "0.72rem" }}>{t.role} · {t.company}</p>
                 </div>
               </div>
             </div>
