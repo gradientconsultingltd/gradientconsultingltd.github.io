@@ -14,11 +14,12 @@ export default function Footer() {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 40, marginBottom: 48 }}>
 
           {/* Logo */}
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <div style={{ width: 28, height: 28, borderRadius: 8, background: "linear-gradient(135deg, #C4B4DC, #9380BF)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <span style={{ fontFamily: "Zalando Sans, sans-serif", fontWeight: 700, fontSize: "0.82rem", color: "#fff" }}>G</span>
-            </div>
-            <span style={{ fontFamily: "Zalando Sans, sans-serif", fontWeight: 700, fontSize: "0.88rem", color: "#FFFFFF", letterSpacing: "-0.01em" }}>Gradient Consulting</span>
+          <div>
+            <img
+              src="/logo-gradient.png"
+              alt="Gradient Consulting"
+              style={{ height: 56, width: "auto", display: "block" }}
+            />
           </div>
 
           {/* Company */}
