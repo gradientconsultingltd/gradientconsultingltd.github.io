@@ -488,7 +488,7 @@ function HomeView({ statRoles, statPay, statPlatforms, search, setSearch, locati
           <p className="ds-sub">Gradient Consulting pulls live roles from Mercor, micro1, Turing, xAI, and Handshake AI into a single queue — so you compare pay and hours without checking five inboxes.</p>
           <div className="ds-searchbar">
             <div className="ds-searchfield">
-              <input type="text" placeholder="Role — e.g. RLHF, data annotation, code review" value={search} onChange={e => setSearch(e.target.value)} />
+              <input type="text" placeholder="Role — e.g. RLHF" value={search} onChange={e => setSearch(e.target.value)} />
             </div>
             <div className="ds-searchdivider" />
             <div className="ds-searchfield">
