@@ -586,6 +586,18 @@
 @media (max-width: 820px) { .ds-companygrid { grid-template-columns: 1fr; } }
 .ds-companycard { transition: border-color 160ms ease; }
 .ds-companycard:hover { border-color: var(--color-border-translucent); }
+.ds-companycard:hover .ds-chevron { transform: translateX(2px); color: var(--color-body); }
+.ds-companycard-inner { display: flex; flex-direction: column; gap: 14px; }
+.ds-rolestat {
+  display: inline-flex; align-self: flex-start; margin-top: 2px;
+  font-size: 12px; font-weight: 500; padding: 2px 10px; border-radius: 9999px;
+  background: rgba(160,195,236,0.14); color: var(--color-accent-breeze);
+}
+.ds-chevron {
+  color: var(--color-body-mid); flex-shrink: 0; margin-left: auto;
+  transition: transform 160ms ease, color 160ms ease;
+}
+.ds-companydesc { color: var(--color-body-mid); font-size: 14px; line-height: 22px; }
 .ds-companyactions { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
 .ds-companyactions a { text-decoration: none; }
 .ds-pricecard ul {

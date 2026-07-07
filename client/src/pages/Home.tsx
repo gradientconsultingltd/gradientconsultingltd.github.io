@@ -886,7 +886,7 @@ function CompaniesView({ jobCounts, onOpen }: { jobCounts: Record<string, number
       <div className="ds-companygrid">
         {COMPANIES.map(c => (
           <Card key={c.id} className="ds-companycard" style={{ cursor: "pointer" }}>
-            <div onClick={() => onOpen(c)}>
+            <div className="ds-companycard-inner" onClick={() => onOpen(c)}>
               <div className="ds-jobtop">
                 <div className="ds-logochip"><img src={c.icon} alt={c.name} /></div>
                 <div className="ds-jobcompany">
@@ -894,10 +894,13 @@ function CompaniesView({ jobCounts, onOpen }: { jobCounts: Record<string, number
                     {c.name}
                     <img className="ds-verified" src="/verified-badge.png" alt="Verified" />
                   </div>
-                  <div className="ds-jobmeta">{jobCounts[c.id] ?? "…"} open roles</div>
+                  <div className="ds-rolestat">{jobCounts[c.id] ?? "…"} open roles</div>
                 </div>
+                <svg className="ds-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </div>
-              <p className="ds-jobdesc" style={{ marginTop: 14 }}>{c.summary}</p>
+              <p className="ds-companydesc">{c.summary}</p>
             </div>
           </Card>
         ))}
