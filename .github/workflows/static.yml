@@ -3,6 +3,12 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # Prerendering only re-runs when this workflow runs — scraping new jobs
+  # in the separate gradient-jobs-pipeline repo doesn't trigger it, so the
+  # static pages Google reads would otherwise silently drift out of sync
+  # with the live data. This keeps that gap to at most a day.
+  schedule:
+    - cron: "0 3 * * *" # 03:00 UTC daily
   workflow_dispatch:
 
 permissions:
