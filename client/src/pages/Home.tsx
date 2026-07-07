@@ -7,6 +7,7 @@ import { Streamdown } from "streamdown";
 // proxy /api/* to. Override with VITE_API_BASE_URL for a different
 // deployment (e.g. a local Flask server while working on the API itself).
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "https://dt7hwc3qm0.execute-api.eu-west-2.amazonaws.com";
+const SITE_URL = "https://www.gradientc.com";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -219,7 +220,7 @@ type Filters = { domain: Set<string>; commitment: Set<string>; source: Set<strin
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export default function Home() {
-  const [, navigate] = useLocation();
+  const [location, navigate] = useLocation();
   const [matchJobDetail, jobRouteParams] = useRoute("/jobs/:id");
   const [matchJobsList] = useRoute("/jobs");
   const [matchCompanyDetail, companyRouteParams] = useRoute("/companies/:id");
@@ -317,7 +318,13 @@ export default function Home() {
 
     document.title = title;
     document.querySelector('meta[name="description"]')?.setAttribute("content", description);
-  }, [view, selectedJob, selectedCompany]);
+    // One canonical URL per page — the site has no query-param filter
+    // variations reflected in the URL today, but every page should still
+    // explicitly say "this is the canonical version of me" rather than
+    // rely on the default in index.html (which only correctly points at
+    // itself for "/").
+    document.querySelector('link[rel="canonical"]')?.setAttribute("href", `${SITE_URL}${location === "/" ? "/" : location}`);
+  }, [view, selectedJob, selectedCompany, location]);
 
   // JobPosting structured data (Google Jobs / rich results) — only present
   // on an actual job detail page, removed everywhere else.
