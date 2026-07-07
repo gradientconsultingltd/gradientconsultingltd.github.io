@@ -29,6 +29,10 @@ jobs:
         run: pnpm build:client
         env:
           VITE_BASE_PATH: /
+      - name: Install Playwright's Chromium (for prerendering)
+        run: npx playwright install --with-deps chromium
+      - name: Prerender every job/company page to static HTML
+        run: node scripts/prerender.mjs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist/public
