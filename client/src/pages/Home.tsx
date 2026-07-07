@@ -21,7 +21,7 @@ export type Job = {
   hours_per_week: number | null;
   location: string;
   work_arrangement: string;
-  eligible_location: string;
+  eligible_location: string[];
   listing_domain: string | null;
   referral_amount: number | null;
   remaining_slots: number | null;
@@ -45,6 +45,53 @@ function payLabel(job: Job): string {
   if (job.rate_min) return `$${job.rate_min.toLocaleString()}${unit}`;
   if (job.rate_max) return `Up to $${job.rate_max.toLocaleString()}${unit}`;
   return "Pay on listing";
+}
+
+const PAY_UNIT_CODE: Record<string, string> = { hourly: "HOUR", yearly: "YEAR", monthly: "MONTH" };
+const EMPLOYMENT_TYPE_CODE: Record<string, string> = { "full-time": "FULL_TIME", "part-time": "PART_TIME", hourly: "CONTRACTOR" };
+
+// schema.org JobPosting structured data for search engines (Google Jobs,
+// rich results). Deliberately never includes referral_amount or anything
+// about the referral bonus — only what to job.referral_url (the public
+// apply link already shown on the page) is included, same as the visible
+// "Apply now" button.
+function buildJobPostingJsonLd(job: Job): Record<string, unknown> {
+  const isRemote = (job.work_arrangement || "").toLowerCase().includes("remote");
+
+  const posting: Record<string, unknown> = {
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    title: job.title,
+    description: job.description || job.title,
+    datePosted: job.posted_at || undefined,
+    employmentType: EMPLOYMENT_TYPE_CODE[job.commitment] || undefined,
+    hiringOrganization: { "@type": "Organization", name: job.company_name },
+    directApply: false,
+  };
+
+  if (isRemote) {
+    posting.jobLocationType = "TELECOMMUTE";
+    if (job.eligible_location?.length) {
+      posting.applicantLocationRequirements = job.eligible_location.map(name => ({ "@type": "Country", name }));
+    }
+  } else if (job.location && job.location.toLowerCase() !== "not specified") {
+    posting.jobLocation = { "@type": "Place", address: { "@type": "PostalAddress", addressLocality: job.location } };
+  }
+
+  if (job.rate_min || job.rate_max) {
+    posting.baseSalary = {
+      "@type": "MonetaryAmount",
+      currency: "USD",
+      value: {
+        "@type": "QuantitativeValue",
+        minValue: job.rate_min || job.rate_max,
+        maxValue: job.rate_max || job.rate_min,
+        unitText: PAY_UNIT_CODE[job.pay_rate_freq] || "HOUR",
+      },
+    };
+  }
+
+  return posting;
 }
 
 const SOURCE_CONFIG: Record<Job["source"], { name: string; icon: string | null; fill?: boolean }> = {
@@ -271,6 +318,21 @@ export default function Home() {
     document.title = title;
     document.querySelector('meta[name="description"]')?.setAttribute("content", description);
   }, [view, selectedJob, selectedCompany]);
+
+  // JobPosting structured data (Google Jobs / rich results) — only present
+  // on an actual job detail page, removed everywhere else.
+  useEffect(() => {
+    const existing = document.getElementById("job-posting-jsonld");
+    if (view === "detail" && selectedJob) {
+      const script = existing instanceof HTMLScriptElement ? existing : document.createElement("script");
+      script.id = "job-posting-jsonld";
+      script.type = "application/ld+json";
+      script.text = JSON.stringify(buildJobPostingJsonLd(selectedJob));
+      if (!existing) document.head.appendChild(script);
+    } else if (existing) {
+      existing.remove();
+    }
+  }, [view, selectedJob]);
 
   // Shrink the nav once the page has scrolled past the top
   useEffect(() => {
