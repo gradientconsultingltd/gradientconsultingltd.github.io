@@ -432,6 +432,17 @@
 .ds-filterpanel::-webkit-scrollbar { width: 6px; }
 .ds-filterpanel::-webkit-scrollbar-thumb { background: var(--color-hairline); border-radius: 9999px; }
 .ds-filterpanel::-webkit-scrollbar-track { background: transparent; }
+@media (max-width: 900px) {
+  /* Desktop makes this a sticky sidebar next to a separate scrolling
+     column — on mobile it's stacked in the same column (see .ds-jobslayout
+     above), so "sticky" makes it float over the job cards below as you
+     scroll instead of just scrolling away normally. */
+  .ds-filterpanel {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+  }
+}
 .ds-filterhead { display: flex; align-items: center; justify-content: space-between; }
 .ds-filterhead h3 { font-size: 14px; font-weight: 400; margin: 0; }
 .ds-clearbtn {

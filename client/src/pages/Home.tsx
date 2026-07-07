@@ -457,9 +457,9 @@ function HomeView({ statRoles, statPay, statPlatforms, search, setSearch, locati
       <div className="ds-hero">
         <div className="ds-hero-glow" />
         <div className="ds-hero-content">
-          <Eyebrow>921 open roles, refreshed hourly</Eyebrow>
+          <Eyebrow>{statRoles} open roles, refreshed hourly</Eyebrow>
           <h1>Every AI training gig,<br />one search away.</h1>
-          <p className="ds-sub">Gradient Consulting pulls live roles from Outlier, micro1, Mercor, Turing and more into a single queue — so you compare pay and hours without checking four inboxes.</p>
+          <p className="ds-sub">Gradient Consulting pulls live roles from Mercor, micro1, Turing, xAI, and Handshake AI into a single queue — so you compare pay and hours without checking five inboxes.</p>
           <div className="ds-searchbar">
             <div className="ds-searchfield">
               <input type="text" placeholder="Role — e.g. RLHF, data annotation, code review" value={search} onChange={e => setSearch(e.target.value)} />
@@ -525,7 +525,7 @@ function HomeView({ statRoles, statPay, statPlatforms, search, setSearch, locati
         <div className="ds-stepsgrid" style={{ marginTop: 24 }}>
           {[
             { num: "01", title: "Tell us what you're looking for", body: "Role type, experience level, and how many hours a week you want to work." },
-            { num: "02", title: "We pull live roles, hourly", body: "Outlier, micro1, Mercor, Turing and more — deduplicated and tagged by pay and skill." },
+            { num: "02", title: "We pull live roles, hourly", body: "Mercor, micro1, Turing, xAI, Handshake AI and more — deduplicated and tagged by pay and skill." },
             { num: "03", title: "Apply once, track everywhere", body: "Every application routes to the source platform directly — no extra accounts." },
           ].map(s => (
             <Card key={s.num}>
@@ -816,7 +816,7 @@ function DevView({ devEmail, setDevEmail, apiSent, setApiSent }: {
       </div>
       <div className="ds-devgrid">
         <div>
-          <p className="ds-lede" style={{ marginBottom: 24 }}>License the same feed that powers Gradient Consulting — every open role from Outlier, micro1, Mercor, Turing and more, deduplicated and tagged by pay, category, and experience level. Updated hourly.</p>
+          <p className="ds-lede" style={{ marginBottom: 24 }}>License the same feed that powers Gradient Consulting — every open role from Mercor, micro1, Turing, xAI, Handshake AI and more, deduplicated and tagged by pay, category, and experience level. Updated hourly.</p>
           <div className="ds-devemailrow">
             <input className="ds-input" type="email" placeholder="you@company.com" value={devEmail} onChange={e => setDevEmail(e.target.value)} />
             <Btn onClick={() => setApiSent(true)}>{apiSent ? "Key sent ✓" : "Get API key"}</Btn>
