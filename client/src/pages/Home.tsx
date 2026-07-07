@@ -182,6 +182,7 @@ export default function Home() {
   const [filters, setFilters] = useState<Filters>({ domain: new Set(), commitment: new Set(), source: new Set() });
   const [jobs, setJobs] = useState<Job[]>([]);
   const [totalJobs, setTotalJobs] = useState(0);
+  const [allMatchingJobs, setAllMatchingJobs] = useState<Job[]>([]);
   const [page, setPage] = useState(1);
   const PAGE_SIZE = 24;
   const [loadingJobs, setLoadingJobs] = useState(false);
@@ -284,6 +285,31 @@ export default function Home() {
       .finally(() => setLoadingJobs(false));
   }, [view, filters, search, locationQ, page, datePreset, customFrom, customTo]);
 
+  // Filter chip counts need the *full* matching set, not just the current
+  // page of 24 — deliberately excludes domain/commitment/source so a chip's
+  // count reflects "how many jobs total have this", not "how many are on
+  // the currently displayed page".
+  useEffect(() => {
+    if (view !== "jobs") return;
+    const params = new URLSearchParams({ limit: "5000" });
+    if (search) params.set("search", search);
+    if (locationQ) params.set("location", locationQ);
+
+    if (datePreset === "24h") {
+      params.set("posted_after", new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString());
+    } else if (datePreset === "month") {
+      params.set("posted_after", new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString());
+    } else if (datePreset === "custom") {
+      if (customFrom) params.set("posted_after", new Date(customFrom).toISOString());
+      if (customTo) params.set("posted_before", new Date(customTo + "T23:59:59").toISOString());
+    }
+
+    fetch(`${API_BASE}/api/jobs?${params}`)
+      .then(r => r.json())
+      .then(d => setAllMatchingJobs(d.jobs || []))
+      .catch(() => {});
+  }, [view, search, locationQ, datePreset, customFrom, customTo]);
+
   const goTo = useCallback((v: View, jobId?: string) => {
     setView(v);
     setMobileOpen(false);
@@ -347,7 +373,7 @@ export default function Home() {
   function chips(dim: keyof Filters, opts: string[]) {
     return opts.map(label => ({
       label,
-      count: jobs.filter(j => (j as Record<string, unknown>)[FIELD_BY_DIM[dim]] === label).length,
+      count: allMatchingJobs.filter(j => (j as Record<string, unknown>)[FIELD_BY_DIM[dim]] === label).length,
       active: filters[dim].has(label),
       onClick: () => toggleFilter(dim, label),
     }));
