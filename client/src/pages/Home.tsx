@@ -105,8 +105,8 @@ const SOURCE_CONFIG: Record<Job["source"], { name: string; icon: string | null; 
   micro1: { name: "micro1", icon: "/logo-micro1-icon.png" },
   turing: { name: "Turing", icon: "/logo-turing-icon.png" },
   xai: { name: "xAI", icon: "/logo-xai-icon.png" },
-  handshake: { name: "Handshake AI", icon: "/logo-handshake-icon.png" },
-  prolific: { name: "Prolific", icon: "/logo-prolific-icon.png" },
+  handshake: { name: "Handshake AI", icon: "/logo-handshake-icon.png", fill: true },
+  prolific: { name: "Prolific", icon: "/logo-prolific-icon.png", fill: true },
 };
 
 function postedLabel(postedAt: string): string {
@@ -163,6 +163,7 @@ type Company = {
   id: Job["source"];
   name: string;
   icon: string;
+  fill?: boolean;
   summary: string;
   description: string;
   link: string;
@@ -214,6 +215,7 @@ const COMPANIES: Company[] = [
     id: "handshake",
     name: "Handshake AI",
     icon: "/logo-handshake-icon.png",
+    fill: true,
     summary: "Handshake's AI fellowship program pairing domain experts with paid, flexible AI-training projects.",
     description:
       "Handshake AI is a fellowship program connecting professionals across dozens of fields — from finance to nursing to engineering — with flexible, part-time projects that help train and evaluate AI models.",
@@ -224,6 +226,7 @@ const COMPANIES: Company[] = [
     id: "prolific",
     name: "Prolific",
     icon: "/logo-prolific-icon.png",
+    fill: true,
     summary: "Participant-research platform paying domain experts to train and evaluate AI models.",
     description:
       "Prolific connects AI labs and researchers with a global pool of participants for paid AI-training and evaluation tasks. Its Participant Recruitment roles span dozens of domains and languages — most fully remote, paid per task.",
@@ -1049,7 +1052,7 @@ function CompaniesView({ jobCounts, onOpen }: { jobCounts: Record<string, number
           <Card key={c.id} className="ds-companycard" style={{ cursor: "pointer" }}>
             <div className="ds-companycard-inner" onClick={() => onOpen(c)}>
               <div className="ds-jobtop">
-                <div className="ds-logochip"><img src={c.icon} alt={c.name} /></div>
+                <div className={`ds-logochip${c.fill ? " ds-logochip-fill" : ""}`}><img src={c.icon} alt={c.name} /></div>
                 <div className="ds-jobcompany">
                   <div className="ds-cname">
                     {c.name}
@@ -1077,7 +1080,7 @@ function CompanyDetailView({ company, jobCount, onBack, onViewJobs }: {
     <div className="ds-detailwrap">
       <button className="ds-backlink" onClick={onBack}>← All companies</button>
       <div className="ds-jobtop" style={{ margin: "20px 0 8px" }}>
-        <div className="ds-logochip"><img src={company.icon} alt={company.name} /></div>
+        <div className={`ds-logochip${company.fill ? " ds-logochip-fill" : ""}`}><img src={company.icon} alt={company.name} /></div>
         <div className="ds-jobcompany">
           <div className="ds-cname">
             {company.name}
