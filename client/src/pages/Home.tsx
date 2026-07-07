@@ -235,6 +235,43 @@ export default function Home() {
     if (company) setSelectedCompany(company);
   }, [companyRouteParams?.id]);
 
+  // Per-page <title> and <meta name="description"> — search engines (and
+  // link previews) show these, and a generic site-wide title/description
+  // on every job page defeats the point of giving each one its own URL.
+  useEffect(() => {
+    const DEFAULT_TITLE = "Gradient Consulting — Every AI training gig, one search away";
+    const DEFAULT_DESC = "Gradient Consulting pulls live AI training roles from Mercor, micro1, Turing, xAI, and Handshake AI into a single queue — compare pay and hours without checking five inboxes.";
+
+    let title = DEFAULT_TITLE;
+    let description = DEFAULT_DESC;
+
+    if (view === "detail" && selectedJob) {
+      title = `${selectedJob.title} at ${selectedJob.company_name} — Gradient Consulting`;
+      const seen = new Set<string>();
+      const bits = [selectedJob.work_arrangement, selectedJob.commitment, selectedJob.location].filter(b => {
+        if (!b || b.toLowerCase() === "not specified" || seen.has(b.toLowerCase())) return false;
+        seen.add(b.toLowerCase());
+        return true;
+      });
+      description = `${selectedJob.title} at ${selectedJob.company_name}${bits.length ? " — " + bits.join(" · ") : ""}. Apply via Gradient Consulting.`.slice(0, 160);
+    } else if (view === "jobs") {
+      title = "Browse AI Training Jobs — Gradient Consulting";
+      description = "Browse hundreds of live AI training and data-annotation roles from Mercor, micro1, Turing, xAI, and Handshake AI, updated hourly.";
+    } else if (view === "companyDetail" && selectedCompany) {
+      title = `${selectedCompany.name} Jobs — Gradient Consulting`;
+      description = selectedCompany.summary;
+    } else if (view === "companies") {
+      title = "Companies Hiring on Gradient Consulting";
+      description = "Meet the platforms behind every AI training job on Gradient Consulting: Mercor, micro1, Turing, xAI, and Handshake AI.";
+    } else if (view === "developer") {
+      title = "API for AI Training Job Data — Gradient Consulting";
+      description = "License the same job feed that powers Gradient Consulting via a simple REST API — every open AI training role, deduplicated and tagged by pay, category, and experience level.";
+    }
+
+    document.title = title;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", description);
+  }, [view, selectedJob, selectedCompany]);
+
   // Shrink the nav once the page has scrolled past the top
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
