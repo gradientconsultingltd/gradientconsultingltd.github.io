@@ -24,7 +24,7 @@ import handler from "serve-handler";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DIST_DIR = path.resolve(__dirname, "..", "dist", "public");
-const API_BASE = "https://dt7hwc3qm0.execute-api.eu-west-2.amazonaws.com";
+const API_BASE = "https://d2j34oc3q31olo.cloudfront.net";
 const SITE_URL = "https://www.gradientc.com";
 const PORT = 8125;
 const CONCURRENCY = 8;

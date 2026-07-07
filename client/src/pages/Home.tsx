@@ -2,11 +2,16 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation, useRoute } from "wouter";
 import { Streamdown } from "streamdown";
 
-// The API lives on AWS (Lambda + API Gateway), not alongside this static
-// site — GitHub Pages only serves static files, there's no server here to
-// proxy /api/* to. Override with VITE_API_BASE_URL for a different
-// deployment (e.g. a local Flask server while working on the API itself).
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "https://dt7hwc3qm0.execute-api.eu-west-2.amazonaws.com";
+// The API lives on AWS (Lambda + API Gateway) behind a CloudFront cache,
+// not alongside this static site — GitHub Pages only serves static files,
+// there's no server here to proxy /api/* to. Calling CloudFront rather
+// than the API Gateway URL directly matters: the underlying dataset only
+// changes when a scrape runs, but every page load fires ~9 near-
+// simultaneous requests, and hitting the Lambda directly for all of that
+// was driving real concurrency throttling under normal traffic. Override
+// with VITE_API_BASE_URL for a different deployment (e.g. a local Flask
+// server while working on the API itself, where caching doesn't apply).
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "https://d2j34oc3q31olo.cloudfront.net";
 const SITE_URL = "https://www.gradientc.com";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
