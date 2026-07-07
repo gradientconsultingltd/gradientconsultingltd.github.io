@@ -29,7 +29,7 @@ const SITE_URL = "https://www.gradientc.com";
 const PORT = 8125;
 const CONCURRENCY = 8;
 
-const COMPANIES = ["mercor", "micro1", "turing", "xai", "handshake"];
+const COMPANIES = ["mercor", "micro1", "turing", "xai", "handshake", "prolific"];
 
 async function fetchAllJobIds() {
   const res = await fetch(`${API_BASE}/api/jobs?limit=5000`);

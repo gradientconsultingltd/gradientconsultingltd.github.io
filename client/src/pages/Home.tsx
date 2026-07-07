@@ -18,7 +18,7 @@ const SITE_URL = "https://www.gradientc.com";
 
 export type Job = {
   listing_id: string;
-  source: "mercor" | "micro1" | "turing" | "xai" | "handshake";
+  source: "mercor" | "micro1" | "turing" | "xai" | "handshake" | "prolific";
   title: string;
   commitment: string;
   rate_min: number | null;
@@ -106,6 +106,7 @@ const SOURCE_CONFIG: Record<Job["source"], { name: string; icon: string | null; 
   turing: { name: "Turing", icon: "/logo-turing-icon.png" },
   xai: { name: "xAI", icon: "/logo-xai-icon.png" },
   handshake: { name: "Handshake AI", icon: "/logo-handshake-icon.png", fill: true },
+  prolific: { name: "Prolific", icon: "/logo-prolific-icon.png", fill: true },
 };
 
 function postedLabel(postedAt: string): string {
@@ -219,6 +220,16 @@ const COMPANIES: Company[] = [
     link: "https://joinhandshake.com/ai/opportunities",
     linkLabel: "Visit Handshake AI",
   },
+  {
+    id: "prolific",
+    name: "Prolific",
+    icon: "/logo-prolific-icon.png",
+    summary: "Participant-research platform paying domain experts to train and evaluate AI models.",
+    description:
+      "Prolific connects AI labs and researchers with a global pool of participants for paid AI-training and evaluation tasks. Its Participant Recruitment roles span dozens of domains and languages — most fully remote, paid per task.",
+    link: "https://job-boards.greenhouse.io/prolific",
+    linkLabel: "Visit Prolific",
+  },
 ];
 type Filters = { domain: Set<string>; commitment: Set<string>; source: Set<string> };
 
@@ -293,7 +304,7 @@ export default function Home() {
   // on every job page defeats the point of giving each one its own URL.
   useEffect(() => {
     const DEFAULT_TITLE = "Gradient Consulting — Every AI training gig, one search away";
-    const DEFAULT_DESC = "Gradient Consulting pulls live AI training roles from Mercor, micro1, Turing, xAI, and Handshake AI into a single queue — compare pay and hours without checking five inboxes.";
+    const DEFAULT_DESC = "Gradient Consulting pulls live AI training roles from Mercor, micro1, Turing, xAI, Handshake AI, and Prolific into a single queue — compare pay and hours without checking six inboxes.";
 
     let title = DEFAULT_TITLE;
     let description = DEFAULT_DESC;
@@ -309,13 +320,13 @@ export default function Home() {
       description = `${selectedJob.title} at ${selectedJob.company_name}${bits.length ? " — " + bits.join(" · ") : ""}. Apply via Gradient Consulting.`.slice(0, 160);
     } else if (view === "jobs") {
       title = "Browse AI Training Jobs — Gradient Consulting";
-      description = "Browse hundreds of live AI training and data-annotation roles from Mercor, micro1, Turing, xAI, and Handshake AI, updated hourly.";
+      description = "Browse hundreds of live AI training and data-annotation roles from Mercor, micro1, Turing, xAI, Handshake AI, and Prolific, updated hourly.";
     } else if (view === "companyDetail" && selectedCompany) {
       title = `${selectedCompany.name} Jobs — Gradient Consulting`;
       description = selectedCompany.summary;
     } else if (view === "companies") {
       title = "Companies Hiring on Gradient Consulting";
-      description = "Meet the platforms behind every AI training job on Gradient Consulting: Mercor, micro1, Turing, xAI, and Handshake AI.";
+      description = "Meet the platforms behind every AI training job on Gradient Consulting: Mercor, micro1, Turing, xAI, Handshake AI, and Prolific.";
     } else if (view === "developer") {
       title = "API for AI Training Job Data — Gradient Consulting";
       description = "License the same job feed that powers Gradient Consulting via a simple REST API — every open AI training role, deduplicated and tagged by pay, category, and experience level.";
@@ -635,7 +646,7 @@ function HomeView({ statRoles, statPay, statPlatforms, search, setSearch, locati
         <div className="ds-hero-content">
           <Eyebrow>{statRoles} open roles, refreshed hourly</Eyebrow>
           <h1>Every AI training gig,<br />one search away.</h1>
-          <p className="ds-sub">Gradient Consulting pulls live roles from Mercor, micro1, Turing, xAI, and Handshake AI into a single queue — so you compare pay and hours without checking five inboxes.</p>
+          <p className="ds-sub">Gradient Consulting pulls live roles from Mercor, micro1, Turing, xAI, Handshake AI, and Prolific into a single queue — so you compare pay and hours without checking six inboxes.</p>
           <div className="ds-searchbar">
             <div className="ds-searchfield">
               <input type="text" placeholder="Role — e.g. RLHF" value={search} onChange={e => setSearch(e.target.value)} />
@@ -701,7 +712,7 @@ function HomeView({ statRoles, statPay, statPlatforms, search, setSearch, locati
         <div className="ds-stepsgrid" style={{ marginTop: 24 }}>
           {[
             { num: "01", title: "Tell us what you're looking for", body: "Role type, experience level, and how many hours a week you want to work." },
-            { num: "02", title: "We pull live roles, hourly", body: "Mercor, micro1, Turing, xAI, Handshake AI and more — deduplicated and tagged by pay and skill." },
+            { num: "02", title: "We pull live roles, hourly", body: "Mercor, micro1, Turing, xAI, Handshake AI, Prolific and more — deduplicated and tagged by pay and skill." },
             { num: "03", title: "Apply once, track everywhere", body: "Every application routes to the source platform directly — no extra accounts." },
           ].map(s => (
             <Card key={s.num}>
@@ -992,7 +1003,7 @@ function DevView({ devEmail, setDevEmail, apiSent, setApiSent }: {
       </div>
       <div className="ds-devgrid">
         <div>
-          <p className="ds-lede" style={{ marginBottom: 24 }}>License the same feed that powers Gradient Consulting — every open role from Mercor, micro1, Turing, xAI, Handshake AI and more, deduplicated and tagged by pay, category, and experience level. Updated hourly.</p>
+          <p className="ds-lede" style={{ marginBottom: 24 }}>License the same feed that powers Gradient Consulting — every open role from Mercor, micro1, Turing, xAI, Handshake AI, Prolific and more, deduplicated and tagged by pay, category, and experience level. Updated hourly.</p>
           <div className="ds-devemailrow">
             <input className="ds-input" type="email" placeholder="you@company.com" value={devEmail} onChange={e => setDevEmail(e.target.value)} />
             <Btn onClick={() => setApiSent(true)}>{apiSent ? "Key sent ✓" : "Get API key"}</Btn>
