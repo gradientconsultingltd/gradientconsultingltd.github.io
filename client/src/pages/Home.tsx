@@ -764,7 +764,7 @@ function DetailView({ job, onBack, onOpen }: {
         <div className="ds-jobcompany">
           <div className="ds-cname">
             {src.name}
-            <Badge tone="money">Verified</Badge>
+            <img className="ds-verified" src="/verified-badge.png" alt="Verified" />
           </div>
           <div className="ds-jobmeta">{job.work_arrangement} · {job.commitment}</div>
         </div>
@@ -864,7 +864,10 @@ function CompaniesView({ jobCounts, onOpen }: { jobCounts: Record<string, number
               <div className="ds-jobtop">
                 <div className="ds-logochip"><img src={c.icon} alt={c.name} /></div>
                 <div className="ds-jobcompany">
-                  <div className="ds-cname">{c.name}</div>
+                  <div className="ds-cname">
+                    {c.name}
+                    <img className="ds-verified" src="/verified-badge.png" alt="Verified" />
+                  </div>
                   <div className="ds-jobmeta">{jobCounts[c.id] ?? "…"} open roles</div>
                 </div>
               </div>
@@ -886,7 +889,10 @@ function CompanyDetailView({ company, jobCount, onBack, onViewJobs }: {
       <div className="ds-jobtop" style={{ margin: "20px 0 8px" }}>
         <div className="ds-logochip"><img src={company.icon} alt={company.name} /></div>
         <div className="ds-jobcompany">
-          <div className="ds-cname">{company.name}</div>
+          <div className="ds-cname">
+            {company.name}
+            <img className="ds-verified" src="/verified-badge.png" alt="Verified" />
+          </div>
           <div className="ds-jobmeta">{jobCount} open roles on Gradient Consulting</div>
         </div>
       </div>
