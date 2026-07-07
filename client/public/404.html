@@ -3,9 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <script>
-      var path = window.location.pathname.replace(/^\/gradient-consulting/, "") || "/";
-      sessionStorage.setItem("spa_redirect", path + window.location.search + window.location.hash);
-      window.location.replace("/gradient-consulting/");
+      // GitHub Pages serves this for any URL that isn't a literal file
+      // (e.g. /jobs/some-id) — save the real path the visitor wanted, then
+      // redirect to the app's root so it loads normally. main.tsx restores
+      // the saved path before the first render, so routing (and a direct
+      // link to e.g. /jobs/some-id) still lands on the right page.
+      sessionStorage.setItem("spa_redirect", location.pathname + location.search + location.hash);
+      location.replace("/");
     </script>
   </head>
   <body></body>

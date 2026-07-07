@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useLocation, useRoute } from "wouter";
 import { Streamdown } from "streamdown";
 
 // The API lives on AWS (Lambda + API Gateway), not alongside this static
@@ -171,7 +172,23 @@ type Filters = { domain: Set<string>; commitment: Set<string>; source: Set<strin
 // ─── Main component ───────────────────────────────────────────────────────────
 
 export default function Home() {
-  const [view, setView] = useState<View>("home");
+  const [, navigate] = useLocation();
+  const [matchJobDetail, jobRouteParams] = useRoute("/jobs/:id");
+  const [matchJobsList] = useRoute("/jobs");
+  const [matchCompanyDetail, companyRouteParams] = useRoute("/companies/:id");
+  const [matchCompaniesList] = useRoute("/companies");
+  const [matchDevelopers] = useRoute("/developers");
+
+  // The URL is the source of truth for which view is showing — this is
+  // what makes job/company pages real, shareable, crawlable URLs instead
+  // of just in-memory state that resets on refresh.
+  const view: View = matchJobDetail ? "detail"
+    : matchJobsList ? "jobs"
+    : matchCompanyDetail ? "companyDetail"
+    : matchCompaniesList ? "companies"
+    : matchDevelopers ? "developer"
+    : "home";
+
   const [selectedJobId, setSelectedJobId] = useState<string | null>(null);
   const [selectedJob, setSelectedJob] = useState<Job | null>(null);
   const [search, setSearch] = useState("");
@@ -198,6 +215,25 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
   const [companyJobCounts, setCompanyJobCounts] = useState<Record<string, number>>({});
+
+  // Landing directly on /jobs/:id (a shared link, or a crawler) instead of
+  // clicking through from the list — fetch that job if it isn't already
+  // the one loaded.
+  useEffect(() => {
+    const id = jobRouteParams?.id;
+    if (!id || selectedJobId === id) return;
+    setSelectedJobId(id);
+    fetch(`${API_BASE}/api/jobs/${id}`).then(r => r.json()).then(setSelectedJob).catch(() => {});
+  }, [jobRouteParams?.id]);
+
+  // Same for /companies/:id — companies are a local constant, not fetched,
+  // so this is just a lookup rather than a network call.
+  useEffect(() => {
+    const id = companyRouteParams?.id;
+    if (!id || selectedCompany?.id === id) return;
+    const company = COMPANIES.find(c => c.id === id);
+    if (company) setSelectedCompany(company);
+  }, [companyRouteParams?.id]);
 
   // Shrink the nav once the page has scrolled past the top
   useEffect(() => {
@@ -311,7 +347,6 @@ export default function Home() {
   }, [view, search, locationQ, datePreset, customFrom, customTo]);
 
   const goTo = useCallback((v: View, jobId?: string) => {
-    setView(v);
     setMobileOpen(false);
     if (v === "detail" && jobId) {
       setSelectedJobId(jobId);
@@ -319,33 +354,37 @@ export default function Home() {
         .then(r => r.json())
         .then(setSelectedJob)
         .catch(() => {});
+      navigate(`/jobs/${jobId}`);
+    } else {
+      const path = v === "jobs" ? "/jobs" : v === "companies" ? "/companies" : v === "developer" ? "/developers" : "/";
+      navigate(path);
     }
     window.scrollTo(0, 0);
-  }, []);
+  }, [navigate]);
 
   const goToCompany = useCallback((company: Company) => {
     setSelectedCompany(company);
-    setView("companyDetail");
     setMobileOpen(false);
+    navigate(`/companies/${company.id}`);
     window.scrollTo(0, 0);
-  }, []);
+  }, [navigate]);
 
   const goToCompanyJobs = useCallback((companyId: Job["source"]) => {
     setFilters({ domain: new Set(), commitment: new Set(), source: new Set([companyId]) });
-    setView("jobs");
     setMobileOpen(false);
+    navigate("/jobs");
     window.scrollTo(0, 0);
-  }, []);
+  }, [navigate]);
 
   // "About" isn't its own page — it's a section at the bottom of Home.
   // Navigate home first (if needed), then scroll down to it.
   const goToAbout = useCallback(() => {
-    setView("home");
     setMobileOpen(false);
+    navigate("/");
     requestAnimationFrame(() => {
       document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
     });
-  }, []);
+  }, [navigate]);
 
   const toggleFilter = useCallback((dim: keyof Filters, val: string) => {
     setFilters(prev => {
