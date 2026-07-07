@@ -105,8 +105,8 @@ const SOURCE_CONFIG: Record<Job["source"], { name: string; icon: string | null; 
   micro1: { name: "micro1", icon: "/logo-micro1-icon.png" },
   turing: { name: "Turing", icon: "/logo-turing-icon.png" },
   xai: { name: "xAI", icon: "/logo-xai-icon.png" },
-  handshake: { name: "Handshake AI", icon: "/logo-handshake-icon.png", fill: true },
-  prolific: { name: "Prolific", icon: "/logo-prolific-icon.png", fill: true },
+  handshake: { name: "Handshake AI", icon: "/logo-handshake-icon.png" },
+  prolific: { name: "Prolific", icon: "/logo-prolific-icon.png" },
 };
 
 function postedLabel(postedAt: string): string {
