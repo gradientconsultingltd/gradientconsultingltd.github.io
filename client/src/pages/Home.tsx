@@ -371,10 +371,11 @@ export default function Home() {
   // Animate hero stats
   useEffect(() => {
     function anim(set: (v: number) => void, target: number, ms: number) {
+      const safeTarget = Math.max(0, target || 0);
       const t0 = performance.now();
       const step = (t: number) => {
         const p = Math.min(1, (t - t0) / ms);
-        set(Math.round(target * (1 - Math.pow(1 - p, 3))));
+        set(Math.round(safeTarget * (1 - Math.pow(1 - p, 3))));
         if (p < 1) requestAnimationFrame(step);
       };
       requestAnimationFrame(step);
